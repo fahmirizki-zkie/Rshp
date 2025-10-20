@@ -1,0 +1,322 @@
+/* ========== RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ========== CONTAINER ========== */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ========== MAIN CONTENT WRAPPER ========== */
+.main-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-top: 20px;
+} /* ========== HEADER SECTION ========== */
+.page-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4a90e2;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 25px;
+} /* ========== BUTTON SECTION ========== */
+.button-section {
+  text-align: center;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #46b8da;
+  transform: translateY(-2px);
+}
+
+/* ========== TABLE STYLES ========== */
+.table-container {
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  margin-top: 0;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Table Header */
+.data-table thead {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+}
+
+.data-table th {
+  padding: 18px 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table Body */
+.data-table tbody tr {
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.data-table td {
+  padding: 15px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Column Specific Styles */
+.col-id {
+  width: 8%;
+  font-weight: 600;
+}
+
+.col-name {
+  width: 20%;
+  text-align: left;
+  font-weight: 500;
+}
+
+.col-wa {
+  width: 15%;
+  font-family: monospace;
+}
+
+.col-address {
+  width: 30%;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.col-userid {
+  width: 10%;
+  font-weight: 500;
+}
+
+.col-action {
+  width: 17%;
+}
+
+/* ========== ACTION BUTTONS ========== */
+.actions-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-edit {
+  padding: 8px 14px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-edit:hover {
+  background-color: #138496;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  padding: 8px 14px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+.delete-form {
+  display: inline;
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-row td {
+  padding: 40px;
+  color: #adb5bd;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1200px) {
+  .col-address {
+    width: 25%;
+    font-size: 12px;
+  }
+
+  .col-action {
+    width: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .button-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .actions-inline {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .data-table {
+    font-size: 12px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px 6px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 6px 12px;
+    font-size: 11px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .data-table {
+    font-size: 11px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 8px 4px;
+  }
+
+  .col-address {
+    font-size: 11px;
+  }
+
+  .page-header {
+    padding: 20px 0;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* ========== SPECIAL STYLING FOR LONG CONTENT ========== */
+.col-address {
+  max-width: 250px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.col-wa {
+  font-weight: 500;
+}
+
+/* ========== ROLE-BASED ADJUSTMENTS ========== */
+.role-admin .col-action {
+  width: 17%;
+}
+
+.role-resepsionis .data-table th:last-child,
+.role-resepsionis .data-table td:last-child {
+  display: none;
+}
