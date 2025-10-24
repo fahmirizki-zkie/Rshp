@@ -31,7 +31,7 @@
 			<a href="{{ route('admin.data-master') }}">Data Master</a>
 			<form method="POST" action="{{ route('logout') }}" style="display: inline;">
 				@csrf
-				<button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; font: inherit;">Logout</button>
+				<button type="submit" class="logout-button">Logout</button>
 			</form>
 		</div>
 	</div>

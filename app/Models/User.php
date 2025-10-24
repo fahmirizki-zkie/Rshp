@@ -48,8 +48,49 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'iduser';
+    }
+
+    /**
+     * Accessor for 'id' attribute (maps to 'iduser')
+     */
+    public function getIdAttribute()
+    {
+        return $this->attributes['iduser'] ?? null;
+    }
+
+    /**
+     * Accessor for 'name' attribute (maps to 'nama')
+     */
+    public function getNameAttribute()
+    {
+        return $this->attributes['nama'] ?? null;
+    }
+
+    /**
+     * Mutator for 'name' attribute (sets 'nama')
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['nama'] = $value;
+    }
+
     public function pemilik()
     {
         return $this->hasOne(Pemilik::class, 'iduser', 'iduser');
+    }
+
+    /**
+     * Relationship: A user can have many roles
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'iduser', 'idrole')
+                    ->withPivot('status', 'idrole_user');
     }
 }

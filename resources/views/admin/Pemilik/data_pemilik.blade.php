@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pemilik</title>
+    <title>Data Pemilik - Admin RSHP</title>
     <link rel="stylesheet" href="{{ asset('css/style_data_pemilik_new.css') }}">
 </head>
 <body>
@@ -26,7 +26,7 @@
             @endif
             
             @if(isset($role) && $role === 'administrator')
-                <a class="btn btn-secondary" href="{{ url('/data_master') }}">Kembali ke Dashboard</a>
+                <a class="btn btn-secondary" href="{{ route('admin.data-master') }}">Kembali ke Dashboard</a>
             @endif
         </div>
         

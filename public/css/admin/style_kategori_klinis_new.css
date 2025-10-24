@@ -1,0 +1,454 @@
+/* ========== RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ========== CONTAINER ========== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ========== MAIN CONTENT WRAPPER ========== */
+.main-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-top: 20px;
+}
+
+/* ========== HEADER SECTION ========== */
+.page-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4a90e2;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 25px;
+}
+
+/* ========== BUTTON SECTION ========== */
+.button-section {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 8px;
+}
+
+.btn-primary {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #46b8da;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #46b8da;
+  transform: translateY(-2px);
+}
+
+/* ========== ADD FORM SECTION ========== */
+.add-form-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.form-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 300px;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.btn-add {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+/* ========== TABLE STYLES ========== */
+.table-container {
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Table Header */
+.data-table thead {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+}
+
+.data-table th {
+  padding: 18px 15px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table Body */
+.data-table tbody tr {
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.data-table td {
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Column Specific Styles */
+.col-id {
+  width: 20%;
+  font-weight: 600;
+}
+
+.col-name {
+  width: 45%;
+  text-align: left;
+  font-weight: 500;
+}
+
+.col-action {
+  width: 35%;
+}
+
+/* ========== ACTION BUTTONS ========== */
+.actions-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-edit {
+  padding: 8px 16px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-edit:hover {
+  background-color: #138496;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+.delete-form {
+  display: inline;
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-row td {
+  padding: 40px;
+  color: #adb5bd;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ========== EDIT FORM STYLES ========== */
+.edit-form-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 25px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.edit-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  transform: translateY(-1px);
+}
+
+/* ========== BUTTON GROUP STYLES ========== */
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.btn-save {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  min-width: 160px;
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+  background: linear-gradient(135deg, #218838 0%, #1abc9c 100%);
+}
+
+.btn-save:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);
+}
+
+.btn-cancel {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+  min-width: 160px;
+}
+
+.btn-cancel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+  background: linear-gradient(135deg, #5a6268 0%, #3d4246 100%);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-cancel:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(108, 117, 125, 0.3);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-input {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .actions-inline {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .data-table {
+    font-size: 12px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 12px 8px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    width: 100%;
+    min-width: auto;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .edit-form-section {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .data-table th,
+  .data-table td {
+    padding: 10px 5px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .add-form-section {
+    padding: 20px 15px;
+  }
+}

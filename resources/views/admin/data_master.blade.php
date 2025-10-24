@@ -28,9 +28,9 @@
 		<a href="#" class="logo">RSHP<span> UNAIR.</span></a>
 		<div class="navbar-nav">
 			<a href="{{ route('admin.dashboard') }}">Dashboard</a>
-			<form method="POST" action="{{ route('logout') }}" style="display: inline;">
+			<form method="POST" action="{{ route('logout') }}" class="logout-form">
 				@csrf
-				<button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; font: inherit; padding: 0;">Logout</button>
+				<button type="submit" class="logout-button">Logout</button>
 			</form>
 		</div>
 	</div>

@@ -1,0 +1,176 @@
+/* ========== DATA USER STYLES ========== */
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== HEADER SECTION ========== */
+.container h2 {
+  color: #2c5aa0;
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.page-info {
+  color: #666;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ========== ACTION BAR ========== */
+.action-bar {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.action-bar .btn {
+  padding: 12px 25px;
+  background-color: #5bc0de;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.action-bar .btn:hover {
+  background-color: #46b8da;
+  transform: translateY(-2px);
+}
+
+/* ========== DATA TABLE ========== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-table th {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.data-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.data-table tr:hover {
+  background-color: #e3f2fd;
+  transition: background-color 0.3s;
+}
+
+/* ========== ACTION BUTTONS ========== */
+.data-table .btn {
+  padding: 8px 16px;
+  margin: 0 3px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 12px;
+  display: inline-block;
+  transition: all 0.3s;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.edit {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn.edit:hover {
+  background-color: #46b8da;
+  transform: translateY(-1px);
+}
+
+.btn.reset {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.btn.reset:hover {
+  background-color: #ec971f;
+  transform: translateY(-1px);
+}
+
+/* ========== EMPTY STATE ========== */
+.data-table td[colspan] {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px;
+  background-color: #f8f9fa;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .container h2 {
+    font-size: 24px;
+  }
+
+  .action-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .data-table {
+    font-size: 12px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px 8px;
+  }
+
+  .data-table .btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    margin: 2px;
+  }
+}

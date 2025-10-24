@@ -21,7 +21,7 @@
             
             <!-- ========== BUTTON SECTION ========== -->
             <div class="button-section">
-                <a href="{{ url('/data_master') }}" class="btn btn-secondary">Kembali ke Dashboard</a>
+                <a href="{{ route('admin.data-master') }}" class="btn btn-secondary">Kembali ke Dashboard</a>
             </div>
         
         <!-- ========== ALERT MESSAGES ========== -->

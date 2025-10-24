@@ -23,6 +23,6 @@ class JenisHewanController extends Controller
         // Metode 3 (alternatif): Dengan where clause jika diperlukan
         // $jenisHewan = JenisHewan::where('aktif', 1)->get();
         
-        return view('jenis_hewan.jenis_hewan', compact('jenisHewan'));
+        return view('admin.jenis_hewan.jenis_hewan', compact('jenisHewan'));
     }
 }

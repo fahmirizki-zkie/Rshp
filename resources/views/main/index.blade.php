@@ -64,8 +64,7 @@
     </div>
 
 <div class="about3">
-  <a href="https://maps.app.goo.gl/5L5bVHZgASq1NKFZA">
-    <img src="{{ asset('img/maps.png') }}" alt="maps">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.7410075551015!2d112.78555967481299!3d-7.270285392736694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbd40a9784f5%3A0xe756f6ae03eab99!2sRumah%20Sakit%20Hewan%20Pendidikan%20Universitas%20Airlangga!5e0!3m2!1sid!2sid!4v1761053157152!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </a>
 </div>
 </div>
