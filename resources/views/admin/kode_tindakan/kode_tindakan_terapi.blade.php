@@ -1,12 +1,3 @@
-{{-- 
-    DATA KODE TINDAKAN/TERAPI - ADMINISTRATOR MODE
-    ===============================================
-    Halaman ini menampilkan data kode tindakan/terapi dengan fitur CRUD lengkap:
-    - CREATE: Tambah kode tindakan/terapi baru ✅ AKTIF
-    - READ: Lihat semua kode tindakan/terapi ✅ AKTIF
-    - UPDATE: Edit kode tindakan/terapi ✅ AKTIF
-    - DELETE: Hapus kode tindakan/terapi ✅ AKTIF
---}}
 <!DOCTYPE html>
 <html lang="id">
 <head>
