@@ -1,14 +1,3 @@
-{{-- 
-    MANAJEMEN ROLE - VIEW ONLY MODE
-    ================================
-    Halaman ini hanya menampilkan role user (READ operation).
-    Fitur CRUD (Assign, Update, Delete Role) telah dinonaktifkan sementara.
-    
-    Untuk mengaktifkan CRUD:
-    1. Uncomment method di RoleController.php
-    2. Uncomment routes di web.php
-    3. Uncomment form/tombol di view ini
---}}
 <!DOCTYPE html>
 <html lang="id">
 <head>

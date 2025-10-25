@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Schema;
 
 class KategoriKlinisController extends Controller
 {
-    /**
-     * Display a listing of kategori klinis with create form.
-     */
+    //Display a listing of kategori klinis with create form.
+ 
     public function index()
     {
         // Check if table exists to prevent errors
@@ -24,9 +23,8 @@ class KategoriKlinisController extends Controller
         return view('admin.data_kategori_klinis.data_kategori_klinis', compact('kategoriKlinises'));
     }
 
-    /**
-     * Store a newly created kategori klinis in storage.
-     */
+    //Store a newly created kategori klinis in storage.
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -43,17 +41,15 @@ class KategoriKlinisController extends Controller
             ->with('success', 'Kategori klinis berhasil ditambahkan');
     }
 
-    /**
-     * Show the form for editing the specified kategori klinis.
-     */
+    //Show the form for editing the specified kategori klinis.
+
     public function edit(KategoriKlinis $kategoriKlinis)
     {
         return view('admin.data_kategori_klinis.data_kategori_klinis_edit', compact('kategoriKlinis'));
     }
 
-    /**
-     * Update the specified kategori klinis in storage.
-     */
+    //Update the specified kategori klinis in storage.
+
     public function update(Request $request, KategoriKlinis $kategoriKlinis)
     {
         $validated = $request->validate([
@@ -70,9 +66,8 @@ class KategoriKlinisController extends Controller
             ->with('success', 'Kategori klinis berhasil diupdate');
     }
 
-    /**
-     * Remove the specified kategori klinis from storage.
-     */
+    //Remove the specified kategori klinis from storage.
+
     public function destroy(KategoriKlinis $kategoriKlinis)
     {
         $kategoriKlinis->delete();

@@ -11,9 +11,7 @@ use Illuminate\Support\Facades\Schema;
 
 class KodeTindakanTerapiController extends Controller
 {
-    /**
-     * Display a listing of kode tindakan terapi with create form.
-     */
+    //Display a listing of kode tindakan terapi with create form.
     public function index()
     {
         // Check if table exists to prevent errors
@@ -32,9 +30,8 @@ class KodeTindakanTerapiController extends Controller
         return view('admin.kode_tindakan.kode_tindakan_terapi', compact('kodeTindakanTerapis', 'kategoris', 'kategoriKlinises'));
     }
 
-    /**
-     * Store a newly created kode tindakan terapi in storage.
-     */
+    //Store a newly created kode tindakan terapi in storage.
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -59,9 +56,8 @@ class KodeTindakanTerapiController extends Controller
             ->with('success', 'Kode tindakan/terapi berhasil ditambahkan');
     }
 
-    /**
-     * Show the form for editing the specified kode tindakan terapi.
-     */
+    //Show the form for editing the specified kode tindakan terapi.
+
     public function edit(KodeTindakanTerapi $kodeTindakan)
     {
         $kodeTindakan->load(['kategori', 'kategoriKlinis']);
@@ -73,9 +69,8 @@ class KodeTindakanTerapiController extends Controller
         return view('admin.kode_tindakan.kode_tindakan_terapi_edit', compact('kodeTindakan', 'kategoris', 'kategoriKlinises'));
     }
 
-    /**
-     * Update the specified kode tindakan terapi in storage.
-     */
+    //Update the specified kode tindakan terapi in storage.
+
     public function update(Request $request, KodeTindakanTerapi $kodeTindakan)
     {
         $validated = $request->validate([
@@ -100,9 +95,8 @@ class KodeTindakanTerapiController extends Controller
             ->with('success', 'Kode tindakan/terapi berhasil diupdate');
     }
 
-    /**
-     * Remove the specified kode tindakan terapi from storage.
-     */
+    //Remove the specified kode tindakan terapi from storage.
+
     public function destroy(KodeTindakanTerapi $kodeTindakan)
     {
         $kodeTindakan->delete();

@@ -11,9 +11,7 @@ use Illuminate\Support\Facades\Schema;
 
 class PetController extends Controller
 {
-    /**
-     * Display a listing of pets.
-     */
+    //Display a listing of pets.
     public function index()
     {
         // Check if table exists to prevent errors
@@ -29,10 +27,7 @@ class PetController extends Controller
         return view('admin.data_pet.data_pet', compact('pets'));
     }
 
-    /**
-     * Show the form for editing pet name.
-     * Administrator hanya bisa edit NAMA pet saja.
-     */
+    //Show the form for editing pet name.
     public function edit(Pet $pet)
     {
         // Load relationship untuk display saja (tidak bisa diedit)
@@ -41,10 +36,7 @@ class PetController extends Controller
         return view('admin.data_pet.admin_edit_nama_pet', compact('pet'));
     }
 
-    /**
-     * Update pet name only.
-     * Administrator hanya bisa update NAMA pet saja.
-     */
+    //Update pet name only.
     public function update(Request $request, Pet $pet)
     {
         // Validasi hanya untuk nama

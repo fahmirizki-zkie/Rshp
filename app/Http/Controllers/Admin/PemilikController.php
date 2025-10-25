@@ -14,11 +14,6 @@ class PemilikController extends Controller
      */
     public function index()
     {
-        // Untuk sementara: Menampilkan dashboard pemilik dengan data dummy/kosong
-        // Nantinya bisa disesuaikan dengan auth user dan data real
-        
-        // Ambil data pemilik pertama (untuk testing)
-        // Dalam implementasi real, gunakan: auth()->user()->pemilik
         $pemilikData = Pemilik::with('user')->first();
         
         // Data summary (bisa dikembangkan dengan query ke tabel pets, reservasi, rekam_medis)
@@ -39,18 +34,16 @@ class PemilikController extends Controller
             // - Kunjungan terakhir
             // - Reservasi mendatang
             
-            // Contoh (uncomment jika tabel sudah ada):
-            // $summary['total_pets'] = Pet::where('idpemilik', $pemilikData->idpemilik)->count();
-            // $summary['total_reservations'] = Reservasi::where('idpemilik', $pemilikData->idpemilik)->count();
+            $summary['total_pets'] = Pet::where('idpemilik', $pemilikData->idpemilik)->count();
+            $summary['total_reservations'] = Reservasi::where('idpemilik', $pemilikData->idpemilik)->count();
         }
         
         return view('pemilik.pemilik', compact('pemilikData', 'summary'));
     }
 
-    /**
-     * Display data pemilik table (untuk admin/resepsionis)
-     * Menampilkan semua data pemilik dengan Eloquent ORM
-     */
+    //Display data pemilik table (untuk admin/resepsionis)
+    
+
     public function dataPemilik()
     {
         // Ambil semua data pemilik dengan relasi user
@@ -63,21 +56,21 @@ class PemilikController extends Controller
         return view('admin.Pemilik.data_pemilik', compact('pemilikList', 'role'));
     }
     
-    /**
-     * Show the form for editing pemilik (route: admin.pemilik.edit)
-     */
+    //Show the form for editing pemilik (route: admin.pemilik.edit)
+ 
     public function edit($iduser)
     {
         // TODO: Implementasi edit form
         return redirect()->back()->with('info', 'Fitur edit belum diimplementasikan');
     }
     
-    /**
-     * Remove the specified pemilik from database (route: admin.pemilik.destroy)
-     */
+    //Remove the specified pemilik from database (route: admin.pemilik.destroy)
+   
     public function destroy($idpemilik)
     {
         // TODO: Implementasi delete dengan validasi
+        $pemilik = Pemilik::findOrFail($idpemilik);
+        $pemilik->delete();
         // Contoh:
         // $pemilik = Pemilik::findOrFail($idpemilik);
         // $pemilik->delete();

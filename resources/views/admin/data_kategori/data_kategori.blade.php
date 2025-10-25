@@ -1,12 +1,3 @@
-{{-- 
-    DATA KATEGORI - ADMINISTRATOR MODE
-    ===================================
-    Halaman ini menampilkan data kategori dengan fitur CRUD lengkap:
-    - CREATE: Tambah kategori baru ✅ AKTIF
-    - READ: Lihat semua kategori ✅ AKTIF
-    - UPDATE: Edit nama kategori ✅ AKTIF
-    - DELETE: Hapus kategori ✅ AKTIF
---}}
 <!DOCTYPE html>
 <html lang="id">
 <head>

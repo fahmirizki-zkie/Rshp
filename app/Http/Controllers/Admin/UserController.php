@@ -10,9 +10,8 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of users.
-     */
+    //Display a listing of users.
+
     public function index()
     {
         // Ambil semua user, diurutkan berdasarkan nama
@@ -20,24 +19,16 @@ class UserController extends Controller
         
         return view('admin.data_user.data_user', compact('users'));
     }
-
-    // ========== CRUD OPERATIONS (DISABLED FOR NOW) ==========
-    // Fitur Create, Update, Delete dinonaktifkan sementara
-    // Hanya fitur View/Read yang aktif
     
-    /**
-     * Show the form for creating a new user.
-     * DISABLED: Create operation
-     */
+    //DISABLED: Create operation
+
     // public function create()
     // {
     //     return view('admin.data_user.tambah_user');
     // }
 
-    /**
-     * Store a newly created user in storage.
-     * DISABLED: Create operation
-     */
+    //DISABLED: Create operation
+    
     // public function store(Request $request)
     // {
     //     $validated = $request->validate([
@@ -56,19 +47,15 @@ class UserController extends Controller
     //         ->with('success', 'User berhasil ditambahkan');
     // }
 
-    /**
-     * Show the form for editing the specified user.
-     * DISABLED: Update operation
-     */
+    //DISABLED: Update operation
+
     // public function edit(User $user)
     // {
     //     return view('admin.data_user.edit_user', compact('user'));
     // }
 
-    /**
-     * Update the specified user's name in storage.
-     * DISABLED: Update operation
-     */
+    //DISABLED: Update operation
+
     // public function update(Request $request, User $user)
     // {
     //     $validated = $request->validate([
@@ -85,19 +72,15 @@ class UserController extends Controller
     //         ->with('success', 'User berhasil diupdate');
     // }
 
-    /**
-     * Show the form for resetting user password.
-     * DISABLED: Update operation
-     */
+    //DISABLED: Update operation
+
     // public function showResetPassword(User $user)
     // {
     //     return view('admin.data_user.reset_password', compact('user'));
     // }
 
-    /**
-     * Reset the user's password.
-     * DISABLED: Update operation
-     */
+    //DISABLED: Update operation
+
     // public function resetPassword(Request $request, User $user)
     // {
     //     $validated = $request->validate([
@@ -112,10 +95,8 @@ class UserController extends Controller
     //         ->with('success', 'Password berhasil direset');
     // }
 
-    /**
-     * Remove the specified user from storage.
-     * DISABLED: Delete operation
-     */
+    //DISABLED: Delete operation
+
     // public function destroy(User $user)
     // {
     //     $user->delete();

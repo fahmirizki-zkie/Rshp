@@ -1,8 +1,3 @@
-{{-- 
-    EDIT KATEGORI - ADMINISTRATOR
-    ==============================
-    Form untuk edit nama kategori.
---}}
 <!DOCTYPE html>
 <html lang="id">
 <head>

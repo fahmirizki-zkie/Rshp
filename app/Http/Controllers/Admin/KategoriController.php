@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Schema;
 
 class KategoriController extends Controller
 {
-    /**
-     * Display a listing of kategori with create form.
-     * Administrator bisa tambah, edit, dan hapus kategori.
-     */
+    //Display a listing of kategori with create form.
+
     public function index()
     {
         // Check if table exists to prevent errors
@@ -25,9 +23,7 @@ class KategoriController extends Controller
         return view('admin.data_kategori.data_kategori', compact('kategoris'));
     }
 
-    /**
-     * Store a newly created kategori in storage.
-     */
+    //Store a newly created kategori in storage.
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -44,17 +40,13 @@ class KategoriController extends Controller
             ->with('success', 'Kategori berhasil ditambahkan');
     }
 
-    /**
-     * Show the form for editing the specified kategori.
-     */
+    //Show the form for editing the specified kategori.
     public function edit(Kategori $kategori)
     {
         return view('admin.data_kategori.data_kategori_edit', compact('kategori'));
     }
 
-    /**
-     * Update the specified kategori in storage.
-     */
+    //Update the specified kategori in storage.
     public function update(Request $request, Kategori $kategori)
     {
         $validated = $request->validate([
@@ -71,9 +63,7 @@ class KategoriController extends Controller
             ->with('success', 'Kategori berhasil diupdate');
     }
 
-    /**
-     * Remove the specified kategori from storage.
-     */
+    //Remove the specified kategori from storage.
     public function destroy(Kategori $kategori)
     {
         $kategori->delete();

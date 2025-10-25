@@ -19,17 +19,13 @@ class UserRole extends Model
         'status',
     ];
 
-    /**
-     * Relationship: User Role belongs to a User
-     */
+    // Relationship: User Role belongs to a User
     public function user()
     {
         return $this->belongsTo(User::class, 'iduser', 'iduser');
     }
 
-    /**
-     * Relationship: User Role belongs to a Role
-     */
+    //Relationship: User Role belongs to a Role
     public function role()
     {
         return $this->belongsTo(Role::class, 'idrole', 'idrole');

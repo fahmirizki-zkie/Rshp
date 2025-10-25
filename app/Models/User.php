@@ -9,14 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    //@var list<string>
+     
     protected $table = 'user';
     protected $primaryKey = 'iduser';
     protected $fillable = [
@@ -25,11 +20,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+    //@var list<string>
     protected $hidden = [
         'password',
         'remember_token',
@@ -74,7 +65,7 @@ class User extends Authenticatable
 
     /**
      * Mutator for 'name' attribute (sets 'nama')
-     */
+     */   
     public function setNameAttribute($value)
     {
         $this->attributes['nama'] = $value;
@@ -85,9 +76,7 @@ class User extends Authenticatable
         return $this->hasOne(Pemilik::class, 'iduser', 'iduser');
     }
 
-    /**
-     * Relationship: A user can have many roles
-     */
+    //Relationship: A user can have many roles
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user', 'iduser', 'idrole')

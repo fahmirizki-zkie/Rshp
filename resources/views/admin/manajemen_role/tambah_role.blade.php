@@ -1,14 +1,3 @@
-{{-- 
-    TAMBAH ROLE - VIEW ONLY MODE (DISABLED)
-    ========================================
-    Halaman ini untuk menambahkan role baru ke sistem.
-    Fitur ini dinonaktifkan sementara (VIEW ONLY MODE).
-    
-    Untuk mengaktifkan:
-    1. Uncomment method createRole() dan storeRole() di RoleController.php
-    2. Uncomment routes di web.php
-    3. Uncomment form di view ini
---}}
 <!DOCTYPE html>
 <html lang="id">
 <head>

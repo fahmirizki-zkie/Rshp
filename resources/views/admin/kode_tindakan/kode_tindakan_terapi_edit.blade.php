@@ -1,8 +1,3 @@
-{{-- 
-    EDIT KODE TINDAKAN/TERAPI - ADMINISTRATOR MODE
-    ================================================
-    Form untuk mengedit data kode tindakan/terapi yang sudah ada
---}}
 <!DOCTYPE html>
 <html lang="id">
 <head>
