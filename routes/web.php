@@ -66,12 +66,16 @@ Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user.in
 // Routes untuk Role Management (VIEW ONLY - CRUD DISABLED)
 Route::get('/admin/role', [RoleController::class, 'index'])->name('admin.role.index');
 
+// Routes untuk Daftar Role Management (Admin bisa CRUD role)
+Route::get('/admin/role/daftar', [RoleController::class, 'daftarRole'])->name('admin.role.daftar');
+Route::post('/admin/role/store', [RoleController::class, 'storeRole'])->name('admin.role.store');
+Route::delete('/admin/role/{role}', [RoleController::class, 'destroyRole'])->name('admin.role.destroy');
+
 // CRUD Routes - Disabled for now (hanya view yang aktif)
 // Route::post('/admin/role/assign', [RoleController::class, 'assignRole'])->name('admin.role.assign');
 // Route::put('/admin/role/{idrole_user}/status', [RoleController::class, 'updateRoleStatus'])->name('admin.role.update-status');
 // Route::delete('/admin/role/{idrole_user}', [RoleController::class, 'removeRole'])->name('admin.role.remove');
 // Route::get('/admin/role/create', [RoleController::class, 'createRole'])->name('admin.role.create');
-// Route::post('/admin/role/store', [RoleController::class, 'storeRole'])->name('admin.role.store');
 
 // Route untuk ras hewan (view only - CRUD disabled)
 Route::get('/admin/ras-hewan', [RasHewanController::class, 'index'

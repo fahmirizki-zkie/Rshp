@@ -1,0 +1,9 @@
+# Ignore PHP and Blade files (use PHP formatter instead)
+*.php
+*.blade.php
+
+# Ignore vendor and node_modules
+vendor/
+node_modules/
+storage/
+bootstrap/cache/

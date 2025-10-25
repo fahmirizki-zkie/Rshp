@@ -11,7 +11,7 @@ class JenisHewanController extends Controller
     //Display a listing of jenis hewan.
     public function index()
     {
-        // Metode 1: Mengambil semua data menggunakan all()
+        //Mengambil semua data menggunakan all()
         $jenisHewan = JenisHewan::all();
         return view('admin.jenis_hewan.jenis_hewan', compact('jenisHewan'));
     }

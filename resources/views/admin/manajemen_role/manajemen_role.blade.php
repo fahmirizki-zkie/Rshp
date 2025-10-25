@@ -19,6 +19,7 @@
             
             <!-- ========== BUTTON SECTION ========== -->
             <div class="button-section">
+                <a href="{{ route('admin.role.daftar') }}" class="btn btn-primary">📋 Lihat Daftar Role</a>
                 <a href="{{ route('admin.data-master') }}" class="btn btn-secondary">Kembali ke Dashboard</a>
             </div>
             

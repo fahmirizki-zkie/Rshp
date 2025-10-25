@@ -131,4 +131,60 @@ class RoleController extends Controller
     //     return redirect()->route('admin.role.index')
     //         ->with('success', 'Role baru berhasil ditambahkan');
     // }
+
+    /**
+     * Display a listing of all roles with CRUD operations.
+     * Admin can add and delete roles here.
+     */
+    public function daftarRole()
+    {
+        // Check if table exists to prevent errors
+        if (Schema::hasTable('role')) {
+            $roles = Role::orderBy('idrole', 'asc')->get();
+        } else {
+            $roles = collect();
+        }
+        
+        return view('admin.manajemen_role.daftar_role', compact('roles'));
+    }
+
+    /**
+     * Store a newly created role.
+     */
+    public function storeRole(Request $request)
+    {
+        $validated = $request->validate([
+            'nama_role' => 'required|string|max:50|unique:role,nama_role',
+            'deskripsi' => 'nullable|string|max:255',
+        ], [
+            'nama_role.required' => 'Nama role wajib diisi',
+            'nama_role.max' => 'Nama role maksimal 50 karakter',
+            'nama_role.unique' => 'Nama role sudah ada',
+            'deskripsi.max' => 'Deskripsi maksimal 255 karakter',
+        ]);
+
+        Role::create($validated);
+
+        return redirect()->route('admin.role.daftar')
+            ->with('success', 'Role baru berhasil ditambahkan');
+    }
+
+    /**
+     * Remove the specified role from storage.
+     */
+    public function destroyRole(Role $role)
+    {
+        // Cek apakah role masih digunakan oleh user
+        $userCount = $role->users()->count();
+        
+        if ($userCount > 0) {
+            return redirect()->route('admin.role.daftar')
+                ->with('error', "Role tidak bisa dihapus karena masih digunakan oleh {$userCount} user");
+        }
+
+        $role->delete();
+
+        return redirect()->route('admin.role.daftar')
+            ->with('success', 'Role berhasil dihapus');
+    }
 }

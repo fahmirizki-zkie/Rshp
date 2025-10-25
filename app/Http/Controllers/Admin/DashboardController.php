@@ -20,7 +20,6 @@ class DashboardController extends Controller
     //Display data master page
     public function dataMaster()
     {
-        // TODO: Implementasi halaman data master
         return view('admin.data_master');
     }
 }

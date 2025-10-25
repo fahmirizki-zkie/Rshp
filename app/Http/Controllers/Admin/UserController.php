@@ -11,15 +11,14 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     //Display a listing of users.
-
     public function index()
     {
         // Ambil semua user, diurutkan berdasarkan nama
         $users = User::orderBy('nama', 'asc')->get();
-        
+
         return view('admin.data_user.data_user', compact('users'));
     }
-    
+
     //DISABLED: Create operation
 
     // public function create()
@@ -28,7 +27,7 @@ class UserController extends Controller
     // }
 
     //DISABLED: Create operation
-    
+
     // public function store(Request $request)
     // {
     //     $validated = $request->validate([
