@@ -112,3 +112,6 @@ Route::post('/logout', function() {
     // auth()->logout();
     return redirect('/')->with('success', 'Anda berhasil logout');
 })->name('logout');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

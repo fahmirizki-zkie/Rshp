@@ -46,7 +46,7 @@
         <strong>Your pet's health<br>is our <span>priority</span></strong>
         </h2>
         <p>Yuk, Cek kesehatan si manis agar selalu<br>ceria menemani hari-hari Anda</p>
-        <a href = "#" class = "cta">Login</a>
+        <a href = "login.blade.php" class = "cta">Login</a>
     </div>
  </div>
 <!-- content end -->
