@@ -28,8 +28,8 @@
             
             <!-- User information dan logout button -->
             <div class="user-info">
-                @auth
-                    <span>Selamat datang, {{ auth()->user()->nama }}</span>
+                @if(session('user_id'))
+                    <span>Selamat datang, {{ session('user_nama') ?? $pemilikData->user->nama ?? 'Pemilik' }}</span>
                     <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                         @csrf
                         <button type="submit" class="logout-btn">
@@ -38,7 +38,7 @@
                     </form>
                 @else
                     <span>Selamat datang, Guest</span>
-                @endauth
+                @endif
             </div>
         </div>
     </header>

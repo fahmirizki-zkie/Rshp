@@ -21,14 +21,15 @@ class isResepsionis
             return redirect()->route('login');
         }
 
-        // Ambil role dari session atau dari relasi user
+        // Ambil role dari session
         $userRole = session('user_role');
 
-        // Jika user terautentikasi tapi role 3 (Resepsionis), return 403
-        if ($userRole === 3) {
+        // Jika user adalah Resepsionis (role 4), izinkan akses
+        if ($userRole == 4) {
             return $next($request);
-        } else {
-            return back()->with('error', 'Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.');
         }
+        
+        // Jika bukan resepsionis, redirect ke login
+        return redirect()->route('login')->with('error', 'Akses ditolak. Anda bukan resepsionis.');
     }
 }

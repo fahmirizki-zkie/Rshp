@@ -44,10 +44,14 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    public function showLoginForm()
-    {
-        return view('auth.login');
+    
+public function showLoginForm()
+{
+    if (Auth::check()) {
+        return redirect()->route('home')->with('info', 'Anda sudah login, silakan logout dulu untuk login sebagai user lain.');
     }
+    return view('auth.login');
+}
 
     public function login(Request $request)
     {
@@ -98,19 +102,23 @@ class LoginController extends Controller
             'user_id' => $users->iduser,
             'user_name' => $users->nama,
             'user_email' => $users->email,
-            'user_role' => $userRole->idrole,
+            'user_role' => (int) $userRole->idrole,
             'user_role_name' => $userRole->nama_role,
             'user_status' => $userRole->pivot->status ?? 'active',
         ]);
 
-        switch ($userRole->idrole) {
-            case 1: // Admin
+        $roleId = (int) $userRole->idrole;
+
+        switch ($roleId) {
+            case 1: // Administrator
                 return redirect()->route('admin.dashboard')->with('success', 'Login berhasil');
             case 2: // Dokter
                 return redirect()->route('dokter.dashboard')->with('success', 'Login berhasil');
-            case 3: // Petugas
-                return redirect()->route('petugas.dashboard')->with('success', 'Login berhasil');
-            case 4: // Pemilik
+            case 3: // Perawat
+                return redirect()->route('perawat.dashboard')->with('success', 'Login berhasil');
+            case 4: // Resepsionis
+                return redirect()->route('resepsionis.dashboard')->with('success', 'Login berhasil');
+            case 5: // Pemilik
                 return redirect()->route('pemilik.dashboard')->with('success', 'Login berhasil');
             default:
                 return redirect()->route('home')->with('error', 'Role tidak valid');

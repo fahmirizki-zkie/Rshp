@@ -14,8 +14,8 @@ class DashboardResepsionisController extends Controller
      */
     public function index()
     {
-        // Cek apakah user sudah login dan role-nya resepsionis (role 3)
-        if (!session('user_id') || session('user_role') != 3) {
+        // Cek apakah user sudah login dan role-nya resepsionis (role 4)
+        if (!session('user_id') || session('user_role') != 4) {
             return redirect()->route('login')
                 ->with('error', 'Anda harus login sebagai resepsionis terlebih dahulu');
         }

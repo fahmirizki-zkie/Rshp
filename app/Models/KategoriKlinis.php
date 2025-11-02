@@ -22,4 +22,10 @@ class KategoriKlinis extends Model
     {
         return $this->idkategori_klinis;
     }
+
+    // Relationship ke KodeTindakanTerapi
+    public function kodeTindakan()
+    {
+        return $this->hasMany(KodeTindakanTerapi::class, 'idkategori_klinis', 'idkategori_klinis');
+    }
 }

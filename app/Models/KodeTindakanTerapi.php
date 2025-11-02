@@ -37,4 +37,12 @@ class KodeTindakanTerapi extends Model
     {
         return $this->belongsTo(KategoriKlinis::class, 'idkategori_klinis', 'idkategori_klinis');
     }
+
+    // Helper method untuk get all dengan join (Laravel way)
+    public static function getAllJoined()
+    {
+        return self::with(['kategori', 'kategoriKlinis'])
+            ->orderBy('idkode_tindakan_terapi', 'asc')
+            ->get();
+    }
 }

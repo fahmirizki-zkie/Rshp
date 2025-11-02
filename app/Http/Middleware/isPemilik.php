@@ -21,14 +21,15 @@ class isPemilik
             return redirect()->route('login');
         }
 
-        // Ambil role dari session atau dari relasi user
+        // Ambil role dari session
         $userRole = session('user_role');
 
-        // Jika user terautentikasi tapi role 4 (Pemilik), return 403
-        if ($userRole === 4) {
+        // Jika user adalah Pemilik (role 5), izinkan akses
+        if ($userRole == 5) {
             return $next($request);
-        } else {
-            return back()->with('error', 'Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.');
         }
+        
+        // Jika bukan pemilik, redirect ke login
+        return redirect()->route('login')->with('error', 'Akses ditolak. Anda bukan pemilik.');
     }
 }
