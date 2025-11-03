@@ -1,0 +1,261 @@
+/* Daftar Reservasi - Minimalist Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f8fafc;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 15px 0;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.logo img {
+  height: 35px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #64748b;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background: #3b82f6;
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  padding: 30px 0;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.page-header p {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  background: white;
+  padding: 60px 40px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.empty-state p {
+  color: #64748b;
+}
+
+/* Reservations List */
+.reservations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reservation-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.reservation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.reservation-header {
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pet-info h3 {
+  font-size: 1.3rem;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.pet-type {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-menunggu {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-dikonfirmasi {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-selesai {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-dibatalkan {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.reservation-details {
+  padding: 20px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.detail-row label i {
+  color: #3b82f6;
+  width: 16px;
+}
+
+.detail-row span {
+  color: #1e293b;
+  font-weight: 500;
+  padding-left: 24px;
+  white-space: pre-wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .reservation-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .pet-info {
+    text-align: center;
+  }
+
+  .empty-state {
+    padding: 40px 25px;
+  }
+
+  .reservation-details {
+    padding: 15px;
+  }
+
+  .detail-row {
+    margin-bottom: 12px;
+  }
+}

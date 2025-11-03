@@ -1,291 +1,113 @@
-<!DOCTYPE html><?php
-
+﻿<!DOCTYPE html>
 <html lang="id">
-
-<head>// SECTION 1: INISIALISASI SESSION DAN VALIDASI AUTENTIKASI
-
+<head>
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">// Mulai session untuk tracking user login
-
-    <title>Edit Rekam Medis - Perawat RS Hewan UNAIR</title>session_start();
-
-    
-
-    <!-- CSS Styling External -->// Validasi autentikasi user
-
-    <link rel="stylesheet" href="{{ asset('css/shared/style_rekam_medis.css') }}">// Redirect ke login jika belum terautentikasi
-
-    if (!isset($_SESSION['user'])) {
-
-    <!-- Font Google untuk typography yang konsisten -->    header('Location: login.php');
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    exit;
-
-</head>}
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Rekam Medis - Perawat RS Hewan UNAIR</title>
+    <link rel="stylesheet" href="{{ asset('css/st.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
-
-    <!-- HEADER SECTION: Logo Universitas dan Rumah Sakit -->// SECTION 2: IMPORT CLASS DAN INISIALISASI
-
     <div class="nav-content">
-
-        <div class="logokiri">// Import class yang dibutuhkan untuk operasi rekam medis
-
-            <img src="{{ asset('img/unairr.png') }}" alt="Logo UNAIR">require_once __DIR__ . '/../../class/RekamMedis.php';
-
+        <div class="logokiri">
+            <img src="{{ asset('img/unairr.png') }}" alt="Logo UNAIR">
         </div>
-
-        <div class="text">// Ambil data user dari session dengan sanitasi
-
-            <h2>Universitas Airlangga |</h2>$user = $_SESSION['user'];
-
-        </div>$user_nama = isset($user['nama']) ? htmlspecialchars($user['nama'], ENT_QUOTES, 'UTF-8') : 'Pengguna';
-
+        <div class="text">
+            <h2>Universitas Airlangga |</h2>
+        </div>
         <div class="text2">
-
-            <h2>Rumah Sakit Hewan Pendidikan</h2>// SECTION 3: VALIDASI DAN PENGAMBILAN ID REKAM MEDIS
-
+            <h2>Rumah Sakit Hewan Pendidikan</h2>
         </div>
-
-        <div class="logokanan">// Ambil ID rekam medis dari parameter URL
-
-            <img src="{{ asset('img/rshpp.png') }}" alt="Logo RSHP">// Validasi dan convert ke integer untuk keamanan
-
-        </div>$rekam_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-
+        <div class="logokanan">
+            <img src="{{ asset('img/rshpp.png') }}" alt="Logo RSHP">
+        </div>
     </div>
 
-// Validasi ID rekam medis tidak boleh 0 atau kosong
-
-    <!-- NAVIGATION BAR: Menu navigasi dan logout -->// Redirect ke halaman utama jika invalid
-
-    <div class="navbar">if ($rekam_id == 0) {
-
-        <a href="#" class="logo">RSHP<span> UNAIR.</span></a>    header('Location: rekam_medis_perawat.php?error=invalid_id');
-
-        <div class="navbar-nav">    exit;
-
-            <a href="{{ route('perawat.detail-rekam-medis', $rekamMedis->idrekam_medis) }}">Back</a>}
-
+    <div class="navbar">
+        <a href="#" class="logo">RSHP<span> UNAIR.</span></a>
+        <div class="navbar-nav">
+            <a href="{{ route('perawat.rekam-medis') }}">Back</a>
             <a href="{{ route('logout') }}">Logout</a>
-
-        </div>// SECTION 4: PENGAMBILAN DATA REKAM MEDIS
-
+        </div>
     </div>
 
-// Inisialisasi object RekamMedis dan ambil data berdasarkan ID
+    <div class="container">
+        <h1>Edit Rekam Medis</h1>
 
-    <!-- MAIN CONTENT: Container untuk semua konten halaman -->$rekamMedis = new RekamMedis();
-
-    <div class="container">$rekamData = $rekamMedis->getById($rekam_id);
-
-        <h1>Edit Rekam Medis #{{ $rekamMedis->idrekam_medis }}</h1>
-
-        // Validasi keberadaan data rekam medis
-
-        <!-- SECTION 1: Informasi Pasien (Read-Only Reference) -->// Redirect jika data tidak ditemukan
-
-        <div class="info-card">if (!$rekamData) {
-
-            <h3>Informasi Pasien</h3>    header('Location: rekam_medis_perawat.php?error=record_not_found');
-
-            <div class="info-grid">    exit;
-
-                <div class="info-item">}
-
-                    <strong>Tanggal:</strong> ?>
-
-                    {{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('d/m/Y H:i') }}
-
-                </div><!DOCTYPE html>
-
-                <div class="info-item"><html lang="id">
-
-                    <strong>No. Urut:</strong> <head>
-
-                    {{ $rekamMedis->temuDokter->no_urut ?? '-' }}    <meta charset="UTF-8">
-
-                </div>    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-                <div class="info-item">    <title>Edit Rekam Medis - Perawat RS Hewan UNAIR</title>
-
-                    <strong>Nama Pet:</strong>     
-
-                    {{ $rekamMedis->temuDokter->pet->nama ?? '-' }}    <!-- CSS Styling External -->
-
-                </div>    <link rel="stylesheet" href="../../css/shared/style_rekam_medis.css">
-
-                <div class="info-item">    
-
-                    <strong>Pemilik:</strong>     <!-- Font Google untuk typography yang konsisten -->
-
-                    {{ $rekamMedis->temuDokter->pet->pemilik->user->nama ?? '-' }}    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-                </div></head>
-
-                <div class="info-item"><body>
-
-                    <strong>Dokter:</strong>     <!-- =================================================================== -->
-
-                    {{ $rekamMedis->dokter->nama ?? '-' }}    <!-- HEADER SECTION: Logo Universitas dan Rumah Sakit -->
-
-                </div>    <!-- =================================================================== -->
-
-            </div>    <div class="nav-content">
-
-        </div>        <div class="logokiri">
-
-            <img src="../../img/unairr.png" alt="Logo UNAIR">
-
-        <!-- SECTION 2: Form Edit Rekam Medis -->        </div>
-
-        <form action="{{ route('perawat.rekam-medis.update', $rekamMedis->idrekam_medis) }}" method="POST" class="form-container">        <div class="text">
-
-            @csrf            <h2>Universitas Airlangga |</h2>
-
-            @method('PUT')        </div>
-
-                    <div class="text2">
-
-            <!-- Field Anamnesa dengan data existing -->            <h2>Rumah Sakit Hewan Pendidikan</h2>
-
-            <div class="form-group">        </div>
-
-                <label for="anamnesa">Anamnesa (Wawancara Medis):</label>        <div class="logokanan">
-
-                <textarea name="anamnesa" id="anamnesa" rows="4" required>{{ old('anamnesa', $rekamMedis->anamnesa) }}</textarea>            <img src="../../img/rshpp.png" alt="Logo RSHP">
-
-                <small class="form-help">        </div>
-
-                    Catatan: Edit riwayat keluhan dan informasi dari pemilik tentang kondisi hewan    </div>
-
-                </small>
-
-                @error('anamnesa')    <!-- NAVIGATION BAR: Menu navigasi dan logout -->
-
-                    <span class="error-message">{{ $message }}</span>    <div class="navbar">
-
-                @enderror        <a href="#" class="logo">RSHP<span> UNAIR.</span></a>
-
-            </div>        <div class="navbar-nav">
-
-            <a href="detail_rekam_medis.php?id=<?php echo $rekam_id; ?>">Back</a>
-
-            <!-- Field Temuan Klinis dengan data existing -->            <a href="../../logic/login.php?action=logout">Logout</a>
-
-            <div class="form-group">        </div>
-
-                <label for="temuan_klinis">Temuan Klinis:</label>    </div>
-
-                <textarea name="temuan_klinis" id="temuan_klinis" rows="4" required>{{ old('temuan_klinis', $rekamMedis->temuan_klinis) }}</textarea>
-
-                <small class="form-help">    <!-- MAIN CONTENT: Container untuk semua konten halaman -->
-
-                    Catatan: Edit hasil pemeriksaan fisik dan observasi klinis pada hewan    <div class="container">
-
-                </small>        <h1>Edit Rekam Medis #<?php echo $rekam_id; ?></h1>
-
-                @error('temuan_klinis')        
-
-                    <span class="error-message">{{ $message }}</span>        <!-- SECTION 1: Informasi Pasien (Read-Only Reference) -->
-
-                @enderror        <div class="info-card">
-
-            </div>            <h3>Informasi Pasien</h3>
-
+        <div class="info-card">
+            <h3>Informasi Temu Dokter</h3>
             <div class="info-grid">
-
-            <!-- Field Diagnosa dengan data existing -->                <div class="info-item">
-
-            <div class="form-group">                    <strong>Tanggal:</strong> 
-
-                <label for="diagnosa">Diagnosa:</label>                    <?php echo date('d/m/Y H:i', strtotime($rekamData['created_at'])); ?>
-
-                <textarea name="diagnosa" id="diagnosa" rows="3" required>{{ old('diagnosa', $rekamMedis->diagnosa) }}</textarea>                </div>
-
-                <small class="form-help">                <div class="info-item">
-
-                    Catatan: Edit kesimpulan diagnosa berdasarkan anamnesa dan temuan klinis                    <strong>No. Urut:</strong> 
-
-                </small>                    <?php echo htmlspecialchars($rekamData['no_urut'] ?? '-'); ?>
-
-                @error('diagnosa')                </div>
-
-                    <span class="error-message">{{ $message }}</span>                <div class="info-item">
-
-                @enderror                    <strong>Nama Pet:</strong> 
-
-            </div>                    <?php echo htmlspecialchars($rekamData['nama_pet'] ?? '-'); ?>
-
+                <div class="info-item">
+                    <strong>No. Urut:</strong> 
+                    {{ $rekamMedis->temuDokter->no_urut ?? '-' }}
                 </div>
-
-            <!-- Action buttons -->                <div class="info-item">
-
-            <div class="form-actions">                    <strong>Pemilik:</strong> 
-
-                <button type="submit" class="btn btn-primary">Update Rekam Medis</button>                    <?php echo htmlspecialchars($rekamData['nama_pemilik'] ?? '-'); ?>
-
-                <a href="{{ route('perawat.detail-rekam-medis', $rekamMedis->idrekam_medis) }}" class="btn btn-secondary">Batal</a>                </div>
-
-            </div>                <div class="info-item">
-
-        </form>                    <strong>Dokter:</strong> 
-
-    </div>                    <?php echo htmlspecialchars($rekamData['nama_dokter'] ?? '-'); ?>
-
-</body>                </div>
-
-</html>            </div>
-
+                <div class="info-item">
+                    <strong>Tanggal/Waktu:</strong> 
+                    {{ $rekamMedis->temuDokter ? \Carbon\Carbon::parse($rekamMedis->temuDokter->waktu_daftar)->format('d/m/Y H:i') : '-' }}
+                </div>
+                <div class="info-item">
+                    <strong>Nama Pet:</strong> 
+                    {{ $rekamMedis->temuDokter->pet->nama ?? '-' }}
+                </div>
+                <div class="info-item">
+                    <strong>Pemilik:</strong> 
+                    {{ $rekamMedis->temuDokter->pet->pemilik->user->nama ?? '-' }}
+                </div>
+                <div class="info-item">
+                    <strong>Dokter:</strong> 
+                    {{ $rekamMedis->dokter->nama ?? '-' }}
+                </div>
+            </div>
         </div>
 
-        <!-- SECTION 2: Form Edit Rekam Medis -->
-        <form action="../../logic/perawat/rekam_medis_process.php" method="POST" class="form-container">
-            <!-- Hidden fields untuk identifikasi update -->
-            <input type="hidden" name="action" value="update">
-            <input type="hidden" name="idrekam_medis" value="<?php echo $rekam_id; ?>">
+        <form action="{{ route('perawat.rekam-medis.update', $rekamMedis->idrekam_medis) }}" method="POST" class="form-container">
+            @csrf
+            @method('PUT')
             
-            <!-- Field Anamnesa dengan data existing -->
             <div class="form-group">
                 <label for="anamnesa">Anamnesa (Wawancara Medis):</label>
-                <textarea name="anamnesa" id="anamnesa" rows="4" required><?php echo htmlspecialchars($rekamData['anamnesa'] ?? ''); ?></textarea>
+                <textarea name="anamnesa" id="anamnesa" rows="4" 
+                          placeholder="Masukkan hasil wawancara medis dengan pemilik hewan..." 
+                          required>{{ old('anamnesa', $rekamMedis->anamnesa) }}</textarea>
                 <small class="form-help">
-                    Catatan: Edit riwayat keluhan dan informasi dari pemilik tentang kondisi hewan
+                    Catatan: Isi dengan riwayat keluhan dan informasi yang diberikan pemilik tentang kondisi hewan
                 </small>
+                @error('anamnesa')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
             </div>
 
-            <!-- Field Temuan Klinis dengan data existing -->
             <div class="form-group">
                 <label for="temuan_klinis">Temuan Klinis:</label>
-                <textarea name="temuan_klinis" id="temuan_klinis" rows="4" required><?php echo htmlspecialchars($rekamData['temuan_klinis'] ?? ''); ?></textarea>
+                <textarea name="temuan_klinis" id="temuan_klinis" rows="4" 
+                          placeholder="Masukkan temuan klinis dari pemeriksaan..." 
+                          required>{{ old('temuan_klinis', $rekamMedis->temuan_klinis) }}</textarea>
                 <small class="form-help">
-                    Catatan: Edit hasil pemeriksaan fisik dan observasi klinis pada hewan
+                    Catatan: Isi dengan hasil pemeriksaan fisik dan observasi klinis pada hewan
                 </small>
+                @error('temuan_klinis')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
             </div>
 
-            <!-- Field Diagnosa dengan data existing -->
             <div class="form-group">
                 <label for="diagnosa">Diagnosa:</label>
-                <textarea name="diagnosa" id="diagnosa" rows="3" required><?php echo htmlspecialchars($rekamData['diagnosa'] ?? ''); ?></textarea>
+                <textarea name="diagnosa" id="diagnosa" rows="3" 
+                          placeholder="Masukkan diagnosa berdasarkan pemeriksaan..." 
+                          required>{{ old('diagnosa', $rekamMedis->diagnosa) }}</textarea>
                 <small class="form-help">
-                    Catatan: Edit kesimpulan diagnosa berdasarkan anamnesa dan temuan klinis
+                    Catatan: Isi dengan kesimpulan diagnosa berdasarkan anamnesa dan temuan klinis
                 </small>
+                @error('diagnosa')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
             </div>
 
-            <!-- Action buttons -->
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Update Rekam Medis</button>
-                <a href="detail_rekam_medis.php?id=<?php echo $rekam_id; ?>" class="btn btn-secondary">Batal</a>
+                <a href="{{ route('perawat.rekam-medis') }}" class="btn btn-secondary">Batal</a>
             </div>
         </form>
     </div>
-
-    <?php
-    // CATATAN UNTUK PENGEMBANG:
-    // 1. WORKFLOW EDIT: User datang dari detail_rekam_medis.php dengan ID rekam medis, system validasi ID dan load data existing, form ter-populate dengan data yang sudah ada, user edit field yang diperlukan, submit untuk update data
-    // 2. KEAMANAN: Session validation untuk authentication, ID validation untuk mencegah akses illegal, data sanitization untuk output, required fields validation
-    // 3. USER EXPERIENCE: Data existing ter-populate untuk kemudahan edit, informasi pasien sebagai referensi, form help text untuk guidance, clear navigation back ke detail
-    ?>
 </body>
 </html>

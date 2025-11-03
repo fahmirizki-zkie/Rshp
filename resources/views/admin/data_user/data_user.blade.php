@@ -17,10 +17,18 @@
         
         <!-- ========== ACTION BUTTONS ========== -->
         <div class="action-bar">
-            {{-- CRUD DISABLED: Tombol tambah user dinonaktifkan sementara --}}
-            {{-- <a href="{{ route('admin.user.create') }}" class="btn">+ Tambah User Baru</a> --}}
+            <a href="{{ route('admin.user.create') }}" class="btn">+ Tambah User Baru</a>
             <a href="{{ route('admin.data-master') }}" class="btn">Kembali ke Dashboard</a>
         </div>
+
+        <!-- Flash Messages -->
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-error">{{ session('error') }}</div>
+        @endif
 
         <!-- ========== DATA TABLE ========== -->
         <table class="data-table">
@@ -39,25 +47,23 @@
                 @forelse($users as $user)
                 <tr>
                     <!-- ID User -->
-                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->iduser }}</td>
                     
                     <!-- Nama User -->
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->nama }}</td>
                     
                     <!-- Email User -->
                     <td>{{ $user->email }}</td>
                     
                     <!-- Action Buttons -->
                     <td>
-                        {{-- CRUD DISABLED: Tombol edit dan reset password dinonaktifkan sementara --}}
-                        {{-- <a href="{{ route('admin.user.edit', $user->id) }}" 
+                        <a href="{{ route('admin.user.edit', $user->iduser) }}" 
                            class="btn edit"
-                           title="Edit nama user">Edit Nama</a>
+                           title="Edit nama user">Edit</a>
                         
-                        <a href="{{ route('admin.user.reset-password', $user->id) }}" 
+                        <a href="{{ route('admin.user.reset-password', $user->iduser) }}" 
                            class="btn reset"
-                           title="Reset password user">Reset Password</a> --}}
-                        <span style="color: #9ca3af; font-style: italic;">View Only</span>
+                           title="Reset password user">Reset Password</a>
                     </td>
                 </tr>
                 @empty

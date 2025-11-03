@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Perawat;
 use App\Http\Controllers\Controller;
 use App\Models\RekamMedisLaravel;
 use App\Models\DetailRekamMedisLaravel;
-use App\Models\TemuDokter;
+use App\Models\TemuDokterLaravel as TemuDokter;
 use App\Models\KodeTindakanTerapi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -75,16 +75,10 @@ class PerawatController extends Controller
     /**
      * Halaman Tambah Rekam Medis
      */
-    public function tambahRekamMedis(Request $request)
+    public function tambahRekamMedis(Request $request, $idreservasi)
     {
         $authCheck = $this->checkAuth($request);
         if ($authCheck) return $authCheck;
-
-        $idreservasi = $request->query('idreservasi');
-        
-        if (!$idreservasi) {
-            return redirect()->route('perawat.rekam-medis')->with('error', 'ID reservasi tidak ditemukan');
-        }
 
         // Ambil data temu dokter
         $temuDokter = TemuDokter::with([

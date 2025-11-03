@@ -1,213 +1,89 @@
-<!DOCTYPE html>
-
-<html lang="id">// Form untuk menambahkan data pemilik hewan baru oleh resepsionis
-
-<head>// Role yang dapat mengakses: Resepsionis
-
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">// SECTION 1: INISIALISASI SESSION DAN VALIDASI ROLE
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Pemilik - Resepsionis RS Hewan UNAIR</title>
+    <link rel="stylesheet" href="{{ asset('css/resepsionis/style_resepsionis.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style_data_master_new.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-content">
+        <div class="logokiri">
+            <img src="{{ asset('img/unairr.png') }}" alt="Logo UNAIR">
+        </div>
+        <div class="text">
+            <h2>Universitas Airlangga |</h2>
+        </div>
+        <div class="text2">
+            <h2>Rumah Sakit Hewan Pendidikan</h2>
+        </div>
+        <div class="logokanan">
+            <img src="{{ asset('img/rshpp.png') }}" alt="Logo RSHP">
+        </div>
+    </div>
 
-    // Mulai session jika belum active
+    <div class="navbar">
+        <a href="#" class="logo">RSHP<span> UNAIR.</span></a>
+        <div class="navbar-nav">
+            <a href="{{ route('resepsionis.dashboard') }}">Back</a>
+            <a href="{{ route('logout') }}">Logout</a>
+        </div>
+    </div>
 
-    <!-- CSS Styling External -->// Menggunakan PHP_SESSION_NONE untuk menghindari multiple session start
+    <div class="container">
+        <h1>Tambah Data Pemilik</h1>
 
-    <link rel="stylesheet" href="{{ asset('css/resepsionis/style_resepsionis.css') }}">if (session_status() === PHP_SESSION_NONE) session_start();
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-    <link rel="stylesheet" href="{{ asset('css/shared/style_data_master_new.css') }}">
+        @if(session('error'))
+            <div class="alert alert-error">{{ session('error') }}</div>
+        @endif
 
-    /**
-
-    <!-- Font Google untuk typography yang konsisten --> * Validasi role user - hanya resepsionis yang bisa akses
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> * Ambil role dari session dan validasi dengan ketat
-
-</head> */
-
-<body>$role = strtolower(trim($_SESSION['user']['nama_role'] ?? ''));
-
-    <!-- MAIN CONTAINER: Form container dengan navigation back -->if ($role !== 'resepsionis') {
-
-    <div class="container-small">    header('Location: ../login.php');
-
-        <!-- Navigation back ke data pemilik -->    exit;
-
-        <a href="{{ route('admin.pemilik.index') }}" class="back-link">}
-
-            &larr; Kembali ke Data Pemilik
-
-        </a>// SECTION 2: IMPORT DEPENDENCIES DAN INISIALISASI DATABASE
-
-
-
-        <!-- FORM SECTION: Form tambah pemilik baru -->// Import class yang dibutuhkan untuk operasi database
-
-        <div class="form-box">require_once __DIR__ .'/../../connection/DBconnection.php';
-
-            <h3>Tambah Data Pemilik</h3>require_once __DIR__ .'/../../class/User.php';
-
-            
-
-            <!-- Form dengan action ke route Laravel -->// SECTION 3: PENGAMBILAN DATA USER UNTUK DROPDOWN
-
+        <div class="form-box">
             <form method="POST" action="{{ route('resepsionis.pemilik.store') }}">
+                @csrf
 
-                @csrf// Inisialisasi koneksi database dan model User
-
-                // Ambil semua data user untuk dropdown selection
-
-                <!-- Dropdown User Selection -->$db = new DBconnection();
-
-                <div class="form-group">$userModel = new User($db->getMysqli());
-
-                    <label for="iduser">Pilih User <span class="required">*</span></label>$users = $userModel->getAll();
-
+                <div class="form-group">
+                    <label for="iduser">Pilih User <span class="required">*</span></label>
                     <select name="iduser" id="iduser" required>
-
-                        <option value="" disabled selected>-- Pilih User --</option>// Tutup koneksi database setelah pengambilan data
-
-                        @forelse($users as $user)// Good practice untuk resource management
-
-                            <option value="{{ $user->iduser }}" {{ old('iduser') == $user->iduser ? 'selected' : '' }}>$db->close_connection();
-
-                                {{ $user->iduser }} - {{ $user->nama }}?>
-
+                        <option value="">-- Pilih User --</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->iduser }}" {{ old('iduser') == $user->iduser ? 'selected' : '' }}>
+                                {{ $user->iduser }} - {{ $user->nama }}
                             </option>
-
-                        @empty<!DOCTYPE html>
-
-                            <option value="" disabled>Tidak ada user tersedia</option><html lang="id">
-
-                        @endforelse<head>
-
-                    </select>    <meta charset="UTF-8">
-
-                    <small class="form-help">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-                        Catatan: Pilih user yang akan dijadikan pemilik hewan    <title>Tambah Pemilik - Resepsionis RS Hewan UNAIR</title>
-
-                    </small>    
-
-                    @error('iduser')    <!-- CSS Styling External -->
-
-                        <span class="error-message">{{ $message }}</span>    <link rel="stylesheet" href="../../css/resepsionis/style_resepsionis.css">
-
-                    @enderror    <link rel="stylesheet" href="../../css/shared/style_data_master_new.css">
-
-                </div>    
-
-                    <!-- Font Google untuk typography yang konsisten -->
-
-                <!-- Input Nomor WhatsApp -->    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-                <div class="form-group"></head>
-
-                    <label for="no_wa">No WhatsApp <span class="required">*</span></label><body>
-
-                    <input type="text" name="no_wa" id="no_wa" required     <!-- MAIN CONTAINER: Form container dengan navigation back -->
-
-                           placeholder="Contoh: 081234567890"    <div class="container-small">
-
-                           value="{{ old('no_wa') }}">        <!-- Navigation back ke data pemilik -->
-
-                    <small class="form-help">        <a href="../admin/data_pemilik/data_pemilik.php" class="back-link">
-
-                        Catatan: Masukkan nomor WhatsApp aktif untuk komunikasi            &larr; Kembali ke Data Pemilik
-
-                    </small>        </a>
-
-                    @error('no_wa')
-
-                        <span class="error-message">{{ $message }}</span>        <!-- FORM SECTION: Form tambah pemilik baru -->
-
-                    @enderror        <div class="form-box">
-
-                </div>            <h3>Tambah Data Pemilik</h3>
-
-                            
-
-                <!-- Input Alamat -->            <!-- Form dengan action ke logic pemrosesan -->
-
-                <div class="form-group">            <form method="POST" action="../../logic/admin/data_pemilik_process.php">
-
-                    <label for="alamat">Alamat <span class="required">*</span></label>                <!-- Hidden field untuk identifikasi aksi -->
-
-                    <textarea name="alamat" id="alamat" rows="3" required                 <input type="hidden" name="aksi" value="tambah">
-
-                              placeholder="Masukkan alamat lengkap pemilik">{{ old('alamat') }}</textarea>                
-
-                    <small class="form-help">                <!-- Dropdown User Selection -->
-
-                        Catatan: Alamat lengkap untuk keperluan administrasi dan komunikasi                <div class="form-group">
-
-                    </small>                    <label for="iduser">Pilih User <span class="required">*</span></label>
-
-                    @error('alamat')                    <select name="iduser" id="iduser" required>
-
-                        <span class="error-message">{{ $message }}</span>                        <option value="" disabled selected>-- Pilih User --</option>
-
-                    @enderror                        <?php if ($users && count($users) > 0): ?>
-
-                </div>                            <?php foreach ($users as $u): ?>
-
-                                                <option value="<?php echo htmlspecialchars($u['iduser']); ?>">
-
-                <!-- Action Buttons -->                                    <?php echo htmlspecialchars($u['iduser']) . ' - ' . htmlspecialchars($u['nama']); ?>
-
-                <div class="modal-actions right">                                </option>
-
-                    <a class="btn secondary" href="{{ route('admin.pemilik.index') }}">                            <?php endforeach; ?>
-
-                        Batal                        <?php else: ?>
-
-                    </a>                            <option value="" disabled>Tidak ada user tersedia</option>
-
-                    <button type="submit" class="btn">                        <?php endif; ?>
-
-                        Simpan Data Pemilik                    </select>
-
-                    </button>                    <small class="form-help">
-
-                </div>                        Catatan: Pilih user yang akan dijadikan pemilik hewan
-
-            </form>                    </small>
-
-        </div>                </div>
-
-    </div>                
-
-</body>                <!-- Input Nomor WhatsApp -->
-
-</html>                <div class="form-group">
-
-                    <label for="no_wa">No WhatsApp <span class="required">*</span></label>
-                    <input type="text" name="no_wa" id="no_wa" required 
-                           placeholder="Contoh: 081234567890">
-                    <small class="form-help">
-                        Catatan: Masukkan nomor WhatsApp aktif untuk komunikasi
-                    </small>
+                        @endforeach
+                    </select>
+                    <small class="form-help">Catatan: Pilih user yang akan dijadikan pemilik hewan</small>
+                    @error('iduser')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
                 </div>
-                
-                <!-- Input Alamat -->
+
+                <div class="form-group">
+                    <label for="no_whatsapp">No WhatsApp <span class="required">*</span></label>
+                    <input type="text" name="no_whatsapp" id="no_whatsapp" value="{{ old('no_whatsapp') }}" placeholder="Contoh: 081234567890" required>
+                    <small class="form-help">Catatan: Masukkan nomor WhatsApp aktif untuk komunikasi</small>
+                    @error('no_whatsapp')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <label for="alamat">Alamat <span class="required">*</span></label>
-                    <textarea name="alamat" id="alamat" rows="3" required 
-                              placeholder="Masukkan alamat lengkap pemilik"></textarea>
-                    <small class="form-help">
-                        Catatan: Alamat lengkap untuk keperluan administrasi dan komunikasi
-                    </small>
+                    <textarea name="alamat" id="alamat" rows="4" placeholder="Masukkan alamat lengkap" required>{{ old('alamat') }}</textarea>
+                    <small class="form-help">Catatan: Alamat lengkap untuk keperluan administrasi dan komunikasi</small>
+                    @error('alamat')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
                 </div>
-                
-                <!-- Action Buttons -->
-                <div class="modal-actions right">
-                    <a class="btn secondary" href="../admin/data_pemilik/data_pemilik.php">
-                        Batal
-                    </a>
-                    <button type="submit" class="btn">
-                        Simpan Data Pemilik
-                    </button>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Simpan Data Pemilik</button>
+                    <a href="{{ route('resepsionis.dashboard') }}" class="btn btn-secondary">Batal</a>
                 </div>
             </form>
         </div>

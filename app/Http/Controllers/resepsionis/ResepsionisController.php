@@ -102,12 +102,12 @@ class ResepsionisController extends Controller
         if ($authCheck) return $authCheck;
 
         // Ambil daftar pemilik untuk dropdown
-        $pemiliks = Pemilik::with('user')->get();
+        $pemilikList = Pemilik::with('user')->get();
 
         // Ambil daftar ras hewan
-        $rasList = RasHewan::with('jenisHewan')->orderBy('nama_ras')->get();
+        $rasHewanList = RasHewan::with('jenisHewan')->orderBy('nama_ras')->get();
 
-        return view('resepsionis.resepsionis_tambah_pet', compact('pemiliks', 'rasList'));
+        return view('resepsionis.resepsionis_tambah_pet', compact('pemilikList', 'rasHewanList'));
     }
 
     /**

@@ -1,229 +1,151 @@
 /* ========== DASHBOARD DOKTER STYLES ========== */
+/* CSS khusus untuk dashboard dokter - menggunakan variable dari style_dashboard.css */
 
-/* CSS Variables untuk konsistensi warna */
-:root {
-  --primary: #265295;
-  --secondary: #4eb1cf;
-  --text-white: #ffffff;
-  --shadow-light: rgba(38, 82, 149, 0.1);
-  --shadow-medium: rgba(38, 82, 149, 0.2);
-}
-
-/* ========== MAIN DASHBOARD CONTAINER ========== */
-/* Container utama dashboard dengan styling yang konsisten */
-.dashboard-container {
-  max-width: 600px;
-  margin: 60px auto 0 auto;
-  background: var(--text-white);
-  border-radius: 18px;
-  box-shadow: 0 8px 32px var(--shadow-light);
-  padding: 40px 32px;
-  text-align: center;
-}
-
-/* ========== WELCOME SECTION STYLES ========== */
-/* Styling untuk welcome title */
+/* Override dashboard welcome untuk dokter */
 .dashboard-welcome {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 18px;
-  letter-spacing: 1px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
 }
 
-/* Styling untuk user info text */
+/* Override user info untuk dokter */
 .dashboard-user-info {
-  font-size: 1.18rem;
-  color: var(--secondary);
-  margin-bottom: 12px;
-  font-weight: 500;
-}
-
-/* Highlight untuk role user */
-.role-highlight {
-  color: var(--primary);
-  font-weight: 600;
-}
-
-/* ========== INFO BADGE SECTION ========== */
-/* Container untuk info badge */
-.dashboard-info-badge {
-  margin: 24px 0;
-}
-
-/* Styling untuk informational text */
-.info-text {
-  display: inline-block;
-  background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
-  color: var(--text-white);
-  padding: 10px 28px;
-  border-radius: 12px;
-  font-size: 1.08rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px var(--shadow-light);
-}
-
-/* ========== DOCTOR MENU SECTION ========== */
-/* Container untuk menu cards dokter */
-.doctor-menu-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-/* Styling untuk individual menu card */
-.doctor-menu-card {
-  text-decoration: none;
-  display: block;
-  width: 200px;
-  padding: 20px;
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-  border-radius: 15px;
-  color: var(--text-white);
-  text-align: center;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 15px var(--shadow-medium);
-}
-
-/* Hover effect untuk menu card */
-.doctor-menu-card:hover {
-  transform: translateY(-5px);
-  color: var(--text-white);
-  text-decoration: none;
-  box-shadow: 0 6px 20px var(--shadow-medium);
-}
-
-/* ========== CARD CONTENT STYLES ========== */
-/* Icon styling dalam card */
-.card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  display: block;
-}
-
-/* Title styling dalam card */
-.card-title {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: inherit;
-}
-
-/* Description styling dalam card */
-.card-description {
-  margin: 5px 0 0 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
-  color: inherit;
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-/* Untuk tablet dan layar menengah */
-@media (max-width: 768px) {
-  .dashboard-container {
-    margin: 40px auto 0 auto;
-    padding: 30px 20px;
-    max-width: 90%;
-  }
-
-  .dashboard-welcome {
-    font-size: 2rem;
-  }
-
-  .dashboard-user-info {
     font-size: 1.1rem;
-  }
-
-  .info-text {
-    font-size: 1rem;
-    padding: 8px 20px;
-  }
-
-  .doctor-menu-container {
-    gap: 15px;
-    margin-top: 25px;
-  }
-
-  .doctor-menu-card {
-    width: 180px;
-    padding: 18px;
-  }
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
 }
 
-/* Untuk mobile dan layar kecil */
-@media (max-width: 480px) {
-  .dashboard-container {
-    margin: 30px auto 0 auto;
-    padding: 25px 15px;
-    border-radius: 15px;
-  }
+.role-highlight {
+    color: var(--primary);
+    font-weight: 600;
+}
 
-  .dashboard-welcome {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-  }
+/* Info badge styling */
+.dashboard-info-badge {
+    margin: 1.5rem 0 2rem 0;
+}
 
-  .dashboard-user-info {
+.info-text {
+    display: inline-block;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
     font-size: 1rem;
-  }
+    font-weight: 600;
+    box-shadow: var(--shadow);
+}
 
-  .info-text {
+/* Doctor menu container */
+.doctor-menu-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Doctor menu card */
+.doctor-menu-card {
+    text-decoration: none;
+    display: block;
+    width: 220px;
+    padding: 2rem 1.5rem;
+    background: var(--gradient-primary);
+    border-radius: 16px;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+}
+
+.doctor-menu-card:hover {
+    transform: translateY(-5px);
+    color: white;
+    text-decoration: none;
+    box-shadow: var(--shadow-xl);
+}
+
+/* Card content */
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.card-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+}
+
+.card-description {
+    margin: 0;
     font-size: 0.95rem;
-    padding: 8px 16px;
-  }
-
-  .doctor-menu-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .doctor-menu-card {
-    width: 100%;
-    max-width: 250px;
-    padding: 16px;
-  }
-
-  .card-icon {
-    font-size: 2rem;
-  }
-
-  .card-title {
-    font-size: 1rem;
-  }
-
-  .card-description {
-    font-size: 0.85rem;
-  }
+    opacity: 0.95;
+    color: white;
 }
 
-/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
-/* Focus states untuk keyboard navigation */
+/* Responsive design */
+@media (max-width: 768px) {
+    .dashboard-welcome {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-user-info {
+        font-size: 1rem;
+    }
+
+    .doctor-menu-container {
+        gap: 1rem;
+    }
+
+    .doctor-menu-card {
+        width: 200px;
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-welcome {
+        font-size: 1.5rem;
+    }
+
+    .info-text {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .doctor-menu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .doctor-menu-card {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Accessibility */
 .doctor-menu-card:focus {
-  outline: 3px solid var(--secondary);
-  outline-offset: 2px;
+    outline: 3px solid var(--primary-light);
+    outline-offset: 3px;
 }
 
-/* Reduced motion untuk user yang prefer reduced animation */
 @media (prefers-reduced-motion: reduce) {
-  .doctor-menu-card {
-    transition: none;
-  }
+    .doctor-menu-card {
+        transition: none;
+    }
 
-  .doctor-menu-card:hover {
-    transform: none;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .dashboard-container {
-    border: 2px solid var(--primary);
-  }
-
-  .doctor-menu-card {
-    border: 2px solid var(--text-white);
-  }
+    .doctor-menu-card:hover {
+        transform: none;
+    }
 }

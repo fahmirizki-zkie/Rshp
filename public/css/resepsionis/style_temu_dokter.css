@@ -1,0 +1,106 @@
+/* Temu Dokter page styles (mirrors Data Kategori look) */
+.container-padded {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.heading {
+  color: #265295;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+.toolbar {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.add-form {
+  margin: 16px 0 24px 0;
+}
+.section-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(38, 82, 149, 0.08);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+.table-clean {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(38, 82, 149, 0.12);
+  border-radius: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+.table-clean thead th {
+  background: linear-gradient(90deg, #3867a6, #4eb1cf, #265295);
+  color: #fff;
+  text-align: left;
+  padding: 12px 14px;
+}
+.table-clean tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+.table-clean tbody tr:hover td {
+  background: #f7fbff;
+}
+.actions-inline {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.row-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  flex-wrap: wrap;
+}
+select,
+input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  outline: none;
+}
+select:focus,
+input[type="text"]:focus {
+  border-color: #4eb1cf;
+  box-shadow: 0 0 0 3px rgba(78, 177, 207, 0.15);
+}
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #4eb1cf, #265295);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 16px rgba(38, 82, 149, 0.18);
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  filter: brightness(1.05);
+}
+.empty-row td {
+  text-align: center;
+  padding: 14px 12px;
+  color: #7a869a;
+  background: #f9fbff;
+  font-style: italic;
+}

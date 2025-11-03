@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pemilik;
 use App\Models\Pet;
-use App\Models\TemuDokter;
+use App\Models\TemuDokterLaravel as TemuDokter;
 use App\Models\RekamMedisLaravel;
 use Carbon\Carbon;
 
@@ -193,6 +193,39 @@ class PemilikController extends Controller
         ->get();
 
         return view('pemilik.daftar_rekam_medis', compact('rekamMedisList', 'pemilikData'));
+    }
+
+    /**
+     * Show detail rekam medis
+     */
+    public function getRekamMedisDetail($id)
+    {
+        // Check authentication
+        $authCheck = $this->checkAuth();
+        if ($authCheck) return $authCheck;
+
+        $pemilikData = $this->getPemilikData();
+        
+        if (!$pemilikData) {
+            return redirect()->back()
+                ->with('error', 'Data pemilik tidak ditemukan');
+        }
+
+        // Get rekam medis dengan relationships
+        $rekamMedis = \App\Models\RekamMedisLaravel::with([
+            'temuDokter.pet.pemilik.user',
+            'temuDokter.pet.rasHewan.jenisHewan',
+            'dokter',
+            'detailRekamMedis.kodeTindakanTerapi.kategoriKlinis',
+            'detailRekamMedis.kodeTindakanTerapi.kategori'
+        ])->findOrFail($id);
+
+        // Validasi bahwa rekam medis ini milik pemilik yang login
+        if ($rekamMedis->temuDokter->pet->idpemilik != $pemilikData->idpemilik) {
+            abort(403, 'Unauthorized access');
+        }
+
+        return view('pemilik.detail_rekam_medis', compact('rekamMedis', 'pemilikData'));
     }
 
     /**

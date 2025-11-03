@@ -1,0 +1,121 @@
+/* Styles for Receptionist dashboard and forms */
+body {
+  background: #f5f7fb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+/* Dashboard layout */
+.dash-wrap {
+  max-width: 880px;
+  margin: 36px auto;
+  padding: 0 16px;
+}
+.dash-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.dash-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2233;
+}
+.dash-actions {
+  display: flex;
+  gap: 10px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.tile {
+  padding: 18px;
+  border: 1px solid #e7eaf0;
+  border-radius: 12px;
+  background: #fafbff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tile h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1a2233;
+}
+
+/* Buttons */
+.btn,
+.menu-btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #4a90e2;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.05s ease;
+  text-align: center;
+}
+.btn:hover,
+.menu-btn:hover {
+  transform: translateY(-1px);
+}
+.btn.secondary {
+  background: #f0f3f8;
+  color: #223;
+}
+.btn.danger {
+  background: #e04f5f;
+}
+
+/* Small form layout (Tambah Pemilik page) */
+.container-small {
+  max-width: 560px;
+  margin: 32px auto;
+}
+.back-link {
+  margin-bottom: 16px;
+  display: inline-block;
+  color: #4a90e2;
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+.form-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.form-group select,
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e3e6eb;
+  border-radius: 8px;
+}
+
+/* Utilities */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.modal-actions.right {
+  justify-content: flex-end;
+}
+a.btn {
+  display: inline-block;
+}

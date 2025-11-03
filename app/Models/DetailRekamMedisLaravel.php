@@ -27,4 +27,10 @@ class DetailRekamMedisLaravel extends Model
     {
         return $this->belongsTo(KodeTindakanTerapi::class, 'idkode_tindakan_terapi', 'idkode_tindakan_terapi');
     }
+
+    // Alias untuk backward compatibility
+    public function kodeTindakan()
+    {
+        return $this->kodeTindakanTerapi();
+    }
 }

@@ -19,80 +19,92 @@ class UserController extends Controller
         return view('admin.data_user.data_user', compact('users'));
     }
 
-    //DISABLED: Create operation
+    /**
+     * Show form untuk tambah user
+     */
+    public function create()
+    {
+        return view('admin.data_user.tambah_user');
+    }
 
-    // public function create()
-    // {
-    //     return view('admin.data_user.tambah_user');
-    // }
+    /**
+     * Store user baru
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:user,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-    //DISABLED: Create operation
+        User::create([
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
 
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|string|email|max:255|unique:user,email',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
+        return redirect()->route('admin.user.index')
+            ->with('success', 'User berhasil ditambahkan');
+    }
 
-    //     User::create([
-    //         'name' => $validated['name'],
-    //         'email' => $validated['email'],
-    //         'password' => Hash::make($validated['password']),
-    //     ]);
+    /**
+     * Show form edit user
+     */
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.data_user.edit_user', compact('user'));
+    }
 
-    //     return redirect()->route('admin.user.index')
-    //         ->with('success', 'User berhasil ditambahkan');
-    // }
+    /**
+     * Update user
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('user', 'email')->ignore($user->iduser, 'iduser')],
+        ]);
 
-    //DISABLED: Update operation
+        $user->update([
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+        ]);
 
-    // public function edit(User $user)
-    // {
-    //     return view('admin.data_user.edit_user', compact('user'));
-    // }
+        return redirect()->route('admin.user.index')
+            ->with('success', 'User berhasil diupdate');
+    }
 
-    //DISABLED: Update operation
+    /**
+     * Show form reset password
+     */
+    public function showResetPassword($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.data_user.reset_password', compact('user'));
+    }
 
-    // public function update(Request $request, User $user)
-    // {
-    //     $validated = $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => ['required', 'string', 'email', 'max:255', Rule::unique('user', 'email')->ignore($user->iduser, 'iduser')],
-    //     ]);
+    /**
+     * Reset password user
+     */
+    public function resetPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        
+        $validated = $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-    //     $user->update([
-    //         'name' => $validated['name'],
-    //         'email' => $validated['email'],
-    //     ]);
+        $user->update([
+            'password' => Hash::make($validated['password']),
+        ]);
 
-    //     return redirect()->route('admin.user.index')
-    //         ->with('success', 'User berhasil diupdate');
-    // }
-
-    //DISABLED: Update operation
-
-    // public function showResetPassword(User $user)
-    // {
-    //     return view('admin.data_user.reset_password', compact('user'));
-    // }
-
-    //DISABLED: Update operation
-
-    // public function resetPassword(Request $request, User $user)
-    // {
-    //     $validated = $request->validate([
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
-
-    //     $user->update([
-    //         'password' => Hash::make($validated['password']),
-    //     ]);
-
-    //     return redirect()->route('admin.user.index')
-    //         ->with('success', 'Password berhasil direset');
-    // }
+        return redirect()->route('admin.user.index')
+            ->with('success', 'Password berhasil direset');
+    }
 
     //DISABLED: Delete operation
 

@@ -52,16 +52,14 @@ Route::middleware(['isAdministrator'])->group(function () {
     Route::delete('/admin/pemilik/{idpemilik}', [AdminPemilikController::class, 'destroy'])->name('admin.pemilik.destroy');
 
     // Routes untuk User Management (VIEW ONLY - CRUD DISABLED)
+    // User Management Routes
     Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user.index');
-
-    // CRUD Routes - Disabled for now (hanya view yang aktif)
-    // Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.user.create');
-    // Route::post('/admin/user', [UserController::class, 'store'])->name('admin.user.store');
-    // Route::get('/admin/user/{user}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
-    // Route::put('/admin/user/{user}', [UserController::class, 'update'])->name('admin.user.update');
-    // Route::get('/admin/user/{user}/reset-password', [UserController::class, 'showResetPassword'])->name('admin.user.reset-password');
-    // Route::put('/admin/user/{user}/reset-password', [UserController::class, 'resetPassword'])->name('admin.user.reset-password.update');
-    // Route::delete('/admin/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+    Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.user.create');
+    Route::post('/admin/user', [UserController::class, 'store'])->name('admin.user.store');
+    Route::get('/admin/user/{id}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
+    Route::put('/admin/user/{id}', [UserController::class, 'update'])->name('admin.user.update');
+    Route::get('/admin/user/{id}/reset-password', [UserController::class, 'showResetPassword'])->name('admin.user.reset-password');
+    Route::put('/admin/user/{id}/reset-password', [UserController::class, 'resetPassword'])->name('admin.user.reset-password.update');
 
     // Routes untuk Role Management (VIEW ONLY - CRUD DISABLED)
     Route::get('/admin/role', [RoleController::class, 'index'])->name('admin.role.index');
@@ -124,7 +122,7 @@ Route::middleware(['isPerawat'])->group(function () {
     
     // Rekam Medis - CRUD
     Route::get('/perawat/rekam-medis', [PerawatController::class, 'rekamMedis'])->name('perawat.rekam-medis');
-    Route::get('/perawat/rekam-medis/tambah', [PerawatController::class, 'tambahRekamMedis'])->name('perawat.tambah-rekam-medis');
+    Route::get('/perawat/rekam-medis/tambah/{idreservasi}', [PerawatController::class, 'tambahRekamMedis'])->name('perawat.tambah-rekam-medis');
     Route::post('/perawat/rekam-medis', [PerawatController::class, 'storeRekamMedis'])->name('perawat.rekam-medis.store');
     Route::get('/perawat/rekam-medis/{id}', [PerawatController::class, 'detailRekamMedis'])->name('perawat.detail-rekam-medis');
     Route::get('/perawat/rekam-medis/{id}/edit', [PerawatController::class, 'editRekamMedis'])->name('perawat.edit-rekam-medis');
@@ -170,6 +168,7 @@ Route::middleware(['isPemilik'])->group(function () {
     
     // Route untuk rekam medis pemilik
     Route::get('/pemilik/daftar-rekam-medis', [PemilikController::class, 'getRekamMedisList'])->name('pemilik.rekam-medis');
+    Route::get('/pemilik/rekam-medis/{id}', [PemilikController::class, 'getRekamMedisDetail'])->name('pemilik.rekam-medis.detail');
     
     // Route untuk profile pemilik
     Route::get('/pemilik/profile', [PemilikController::class, 'showProfile'])->name('pemilik.profile');

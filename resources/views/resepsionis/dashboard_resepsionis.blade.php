@@ -58,12 +58,12 @@
                     <i class="icon-user">👤</i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Data Pemilik</h3>
+                    <h3 class="card-title">Tambah Pemilik</h3>
                     <p class="card-description">
-                        Kelola informasi pemilik hewan yang terdaftar di sistem
+                        Tambah data pemilik hewan baru ke sistem
                     </p>
-                    <a href="{{ route('admin.pemilik.index') }}" class="card-button">
-                        Buka Data Pemilik
+                    <a href="{{ route('resepsionis.tambah-pemilik') }}" class="card-button">
+                        Tambah Pemilik
                     </a>
                 </div>
             </div>
@@ -74,28 +74,28 @@
                     <i class="icon-pet">🐕</i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Data Pet</h3>
+                    <h3 class="card-title">Tambah Pet</h3>
                     <p class="card-description">
-                        Kelola informasi hewan yang terdaftar untuk layanan kesehatan
+                        Tambah data hewan peliharaan baru untuk layanan kesehatan
                     </p>
-                    <a href="{{ route('admin.pet.index') }}" class="card-button">
-                        Buka Data Pet
+                    <a href="{{ route('resepsionis.tambah-pet') }}" class="card-button">
+                        Tambah Pet
                     </a>
                 </div>
             </div>
 
             <!-- Card 3: Temu Dokter - DISABLED (akan diimplementasikan nanti) -->
-            <div class="menu-card" style="opacity: 0.5; pointer-events: none;">
+            <div class="menu-card" >
                 <div class="card-icon">
                     <i class="icon-appointment">📅</i>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Temu Dokter</h3>
                     <p class="card-description">
-                        Fitur akan segera tersedia
+                        Temukan dokter yang sesuai untuk layanan kesehatan hewan
                     </p>
-                    <a href="#" class="card-button" style="background: #999; cursor: not-allowed;">
-                        Coming Soon
+                    <a href="{{ route('resepsionis.temu-dokter') }}" class="card-button">
+                        Temu Dokter
                     </a>
                 </div>
             </div>
