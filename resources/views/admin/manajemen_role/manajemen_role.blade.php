@@ -54,51 +54,50 @@
                         @forelse($users as $user)
                         <tr>
                             <!-- ID User -->
-                            <td class="col-id">{{ $user->id }}</td>
+                            <td class="col-id">{{ $user->iduser }}</td>
                             
                             <!-- Nama User -->
-                            <td class="col-name">{{ $user->name }}</td>
+                            <td class="col-name">{{ $user->nama }}</td>
                             
                             <!-- Role Saat Ini -->
                             <td class="col-role">
                                 <div class="role-info">
                                     @forelse($user->roles as $role)
-                                        @if($role->pivot->status == 1)
-                                            <span class="role-active">{{ $role->nama_role }} (Aktif)</span><br>
-                                        @else
-                                            <span class="role-inactive">{{ $role->nama_role }} (Non-Aktif)</span><br>
-                                        @endif
+                                        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                                            @if($role->pivot->status == 1)
+                                                <span class="role-active">{{ $role->nama_role }} (Aktif)</span>
+                                            @else
+                                                <span class="role-inactive">{{ $role->nama_role }} (Non-Aktif)</span>
+                                            @endif
+                                            
+                                            <!-- Tombol Ubah Status -->
+                                            <form method="POST" action="{{ route('admin.role.update-status', $role->pivot->idrole_user) }}" style="display: inline;">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="status" value="{{ $role->pivot->status == 1 ? 0 : 1 }}">
+                                                <button type="submit" class="btn-action" style="font-size: 12px; padding: 4px 8px;">
+                                                    {{ $role->pivot->status == 1 ? 'Nonaktifkan' : 'Aktifkan' }}
+                                                </button>
+                                            </form>
+                                            
+                                            <!-- Tombol Hapus -->
+                                            <form method="POST" action="{{ route('admin.role.remove', $role->pivot->idrole_user) }}" style="display: inline;" onsubmit="return confirm('Yakin hapus role {{ $role->nama_role }} dari user ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-action" style="font-size: 12px; padding: 4px 8px; background: #ef4444;">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
                                     @empty
                                         <span class="no-role">Belum ada role</span>
                                     @endforelse
                                 </div>
                             </td>
                             
-                            <!-- Form Kelola Role - DISABLED -->
+                            <!-- Aksi -->
                             <td class="col-action">
-                                {{-- CRUD DISABLED: Form assign role dinonaktifkan sementara --}}
-                                {{-- 
-                                <form method="POST" action="{{ route('admin.role.assign') }}" class="role-assign-form">
-                                    @csrf
-                                    <input type="hidden" name="iduser" value="{{ $user->id }}">
-                                    
-                                    <select name="idrole" required class="form-select">
-                                        @foreach($allRoles as $role)
-                                        <option value="{{ $role->id }}">
-                                            {{ $role->nama_role }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    
-                                    <select name="status" required class="form-select">
-                                        <option value="1">Aktif</option>
-                                        <option value="0">Non-Aktif</option>
-                                    </select>
-                                    
-                                    <button type="submit" class="btn-action">Tambah Role</button>
-                                </form>
-                                --}}
-                                <span style="color: #9ca3af; font-style: italic;">View Only</span>
+                                <span style="color: #6b7280;">Kelola di samping</span>
                             </td>
                         </tr>
                         @empty

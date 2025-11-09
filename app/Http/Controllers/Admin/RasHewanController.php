@@ -30,60 +30,78 @@ class RasHewanController extends Controller
         return view('admin.rashewan.rahhewan', compact('jenisList', 'rasByJenis'));
     }
     
-    // CRUD functions commented out - untuk nanti jika diperlukan
+    /**
+     * Store a newly created ras hewan.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'idjenis_hewan' => 'required|exists:jenis_hewan,idjenis_hewan',
+            'nama_ras' => 'required|string|max:100',
+        ], [
+            'idjenis_hewan.required' => 'Jenis hewan wajib dipilih',
+            'idjenis_hewan.exists' => 'Jenis hewan tidak valid',
+            'nama_ras.required' => 'Nama ras wajib diisi',
+            'nama_ras.max' => 'Nama ras maksimal 100 karakter',
+        ]);
+        
+        RasHewan::create($validated);
+        
+        return redirect()->route('admin.ras-hewan.index')
+            ->with('success', 'Ras hewan berhasil ditambahkan!');
+    }
     
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'idjenis_hewan' => 'required|exists:jenis_hewan,idjenis_hewan',
-    //         'nama_ras' => 'required|string|max:100',
-    //     ]);
-    //     
-    //     RasHewan::create([
-    //         'idjenis_hewan' => $request->idjenis_hewan,
-    //         'nama_ras' => $request->nama_ras,
-    //     ]);
-    //     
-    //     return redirect()->route('admin.ras-hewan.index')
-    //         ->with('success', 'Ras hewan berhasil ditambahkan!');
-    // }
+    /**
+     * Show the form for editing ras hewan.
+     */
+    public function edit($id)
+    {
+        $ras = RasHewan::findOrFail($id);
+        $jenisList = JenisHewan::orderBy('nama_jenis_hewan')->get();
+        
+        return view('admin.rashewan.edit', compact('ras', 'jenisList'));
+    }
     
-    // public function edit($id)
-    // {
-    //     $ras = RasHewan::findOrFail($id);
-    //     $jenisList = JenisHewan::orderBy('nama_jenis_hewan')->get();
-    //     
-    //     return view('admin.rashewan.edit', compact('ras', 'jenisList'));
-    // }
+    /**
+     * Update the specified ras hewan.
+     */
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'idjenis_hewan' => 'required|exists:jenis_hewan,idjenis_hewan',
+            'nama_ras' => 'required|string|max:100',
+        ], [
+            'idjenis_hewan.required' => 'Jenis hewan wajib dipilih',
+            'idjenis_hewan.exists' => 'Jenis hewan tidak valid',
+            'nama_ras.required' => 'Nama ras wajib diisi',
+            'nama_ras.max' => 'Nama ras maksimal 100 karakter',
+        ]);
+        
+        $ras = RasHewan::findOrFail($id);
+        $ras->update($validated);
+        
+        return redirect()->route('admin.ras-hewan.index')
+            ->with('success', 'Ras hewan berhasil diupdate!');
+    }
     
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'idjenis_hewan' => 'required|exists:jenis_hewan,idjenis_hewan',
-    //         'nama_ras' => 'required|string|max:100',
-    //     ]);
-    //     
-    //     $ras = RasHewan::findOrFail($id);
-    //     $ras->update([
-    //         'idjenis_hewan' => $request->idjenis_hewan,
-    //         'nama_ras' => $request->nama_ras,
-    //     ]);
-    //     
-    //     return redirect()->route('admin.ras-hewan.index')
-    //         ->with('success', 'Ras hewan berhasil diupdate!');
-    // }
-    
-    // public function destroy($id)
-    // {
-    //     try {
-    //         $ras = RasHewan::findOrFail($id);
-    //         $ras->delete();
-    //         
-    //         return redirect()->route('admin.ras-hewan.index')
-    //             ->with('success', 'Ras hewan berhasil dihapus!');
-    //     } catch (\Exception $e) {
-    //         return redirect()->route('admin.ras-hewan.index')
-    //             ->with('error', 'Gagal menghapus ras hewan: ' . $e->getMessage());
-    //     }
-    // }
+    /**
+     * Remove the specified ras hewan.
+     */
+    public function destroy($id)
+    {
+        $ras = RasHewan::findOrFail($id);
+        
+        // Cek apakah ras masih digunakan oleh pet
+        $petCount = $ras->pet()->count();
+        
+        if ($petCount > 0) {
+            return redirect()->route('admin.ras-hewan.index')
+                ->with('error', "Ras hewan tidak bisa dihapus karena masih digunakan oleh {$petCount} hewan peliharaan");
+        }
+        
+        $ras->delete();
+        
+        return redirect()->route('admin.ras-hewan.index')
+            ->with('success', 'Ras hewan berhasil dihapus!');
+    }
 }

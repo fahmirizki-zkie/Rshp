@@ -57,7 +57,7 @@
 			</a>
 			
 			<!-- Animal Species -->
-			<a class="feature-card" href="{{ route('jenis-hewan.index') }}">
+			<a class="feature-card" href="{{ route('admin.jenis-hewan.index') }}">
 				<div class="card-icon">🐾</div>
 				<h3 class="card-title">Jenis Hewan</h3>
 				<p class="card-description">Master data jenis hewan</p>

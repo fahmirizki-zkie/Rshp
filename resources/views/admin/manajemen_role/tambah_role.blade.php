@@ -15,15 +15,13 @@
                 <p class="page-subtitle">Tambahkan role/peran baru ke dalam sistem.</p>
             </div>
             
-            <!-- ========== FORM SECTION - DISABLED ========== -->
+            <!-- ========== FORM SECTION ========== -->
             <div class="form-container">
-                {{-- CRUD DISABLED: Form tambah role dinonaktifkan sementara --}}
-                {{-- 
                 <form action="{{ route('admin.role.store') }}" method="POST" class="role-form">
                     @csrf
                     
                     <div class="form-group">
-                        <label for="nama_role">Nama Role</label>
+                        <label for="nama_role">Nama Role <span style="color: red;">*</span></label>
                         <input type="text" 
                                id="nama_role" 
                                name="nama_role" 
@@ -52,19 +50,9 @@
                     
                     <div class="button-section">
                         <button type="submit" class="btn btn-primary">Simpan Role</button>
-                        <a href="{{ route('admin.role.index') }}" class="btn btn-secondary">Batal</a>
+                        <a href="{{ route('admin.role.daftar') }}" class="btn btn-secondary">Batal</a>
                     </div>
                 </form>
-                --}}
-                
-                <!-- VIEW ONLY MESSAGE -->
-                <div class="alert alert--info" style="margin-top: 20px; padding: 20px; background: #f0f9ff; border: 2px solid #0ea5e9; border-radius: 8px;">
-                    <h3 style="margin-bottom: 10px; color: #0369a1;">⚠️ Fitur Tidak Aktif</h3>
-                    <p style="color: #0c4a6e;">Halaman ini dalam mode <strong>VIEW ONLY</strong>. Fitur tambah role baru sementara dinonaktifkan sesuai ketentuan tugas.</p>
-                    <p style="color: #0c4a6e; margin-top: 10px;">
-                        <a href="{{ route('admin.role.index') }}" class="btn btn-secondary">Kembali ke Manajemen Role</a>
-                    </p>
-                </div>
             </div>
         </div>
     </div>

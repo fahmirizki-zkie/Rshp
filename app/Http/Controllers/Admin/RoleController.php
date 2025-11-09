@@ -77,34 +77,37 @@ class RoleController extends Controller
     // }
 
     /**
-     * Update the status of a user role.
-     * DISABLED: Update role status operation
+     * Update the status of a user role (Aktif/Nonaktif).
      */
-    // public function updateRoleStatus(Request $request, $idrole_user)
-    // {
-    //     $validated = $request->validate([
-    //         'status' => 'required|in:0,1',
-    //     ]);
+    public function updateRoleStatus(Request $request, $idrole_user)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:0,1',
+        ], [
+            'status.required' => 'Status wajib diisi',
+            'status.in' => 'Status harus 0 (Nonaktif) atau 1 (Aktif)',
+        ]);
 
-    //     $userRole = UserRole::findOrFail($idrole_user);
-    //     $userRole->update(['status' => $validated['status']]);
+        $userRole = UserRole::findOrFail($idrole_user);
+        $userRole->update(['status' => $validated['status']]);
 
-    //     return redirect()->route('admin.role.index')
-    //         ->with('success', 'Status role berhasil diupdate');
-    // }
+        $statusText = $validated['status'] == 1 ? 'Aktif' : 'Nonaktif';
+        
+        return redirect()->route('admin.role.index')
+            ->with('success', "Status role berhasil diubah menjadi {$statusText}");
+    }
 
     /**
      * Remove a role from a user.
-     * DISABLED: Delete role operation
      */
-    // public function removeRole($idrole_user)
-    // {
-    //     $userRole = UserRole::findOrFail($idrole_user);
-    //     $userRole->delete();
+    public function removeRole($idrole_user)
+    {
+        $userRole = UserRole::findOrFail($idrole_user);
+        $userRole->delete();
 
-    //     return redirect()->route('admin.role.index')
-    //         ->with('success', 'Role berhasil dihapus dari user');
-    // }
+        return redirect()->route('admin.role.index')
+            ->with('success', 'Role berhasil dihapus dari user');
+    }
 
     /**
      * Display the form for creating a new role.

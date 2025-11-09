@@ -42,6 +42,10 @@ class PetController extends Controller
         // Validasi hanya untuk nama
         $validated = $request->validate([
             'nama' => 'required|string|max:100',
+        ], [
+            'nama.required' => 'Nama pet wajib diisi',
+            'nama.string' => 'Nama pet harus berupa teks',
+            'nama.max' => 'Nama pet maksimal 100 karakter',
         ]);
 
         // Update hanya nama

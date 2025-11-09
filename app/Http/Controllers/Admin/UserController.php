@@ -36,6 +36,16 @@ class UserController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:user,email',
             'password' => 'required|string|min:8|confirmed',
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'nama.max' => 'Nama maksimal 255 karakter',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'email.max' => 'Email maksimal 255 karakter',
+            'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 8 karakter',
+            'password.confirmed' => 'Konfirmasi password tidak cocok',
         ]);
 
         User::create([
@@ -67,6 +77,13 @@ class UserController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('user', 'email')->ignore($user->iduser, 'iduser')],
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'nama.max' => 'Nama maksimal 255 karakter',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'email.max' => 'Email maksimal 255 karakter',
         ]);
 
         $user->update([
@@ -96,6 +113,10 @@ class UserController extends Controller
         
         $validated = $request->validate([
             'password' => 'required|string|min:8|confirmed',
+        ], [
+            'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 8 karakter',
+            'password.confirmed' => 'Konfirmasi password tidak cocok',
         ]);
 
         $user->update([

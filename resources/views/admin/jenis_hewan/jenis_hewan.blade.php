@@ -25,34 +25,36 @@
             </div>
         
         <!-- ========== ALERT MESSAGES ========== -->
-        @php
-            $status = session('status') ?? request('status');
-            $msg = session('msg') ?? request('msg');
-        @endphp
-        @if(!empty($status) && !empty($msg))
-            @php $alertClass = $status === 'success' ? 'alert--success' : 'alert--error'; @endphp
-            <div class="alert {{ $alertClass }}">
-                {{ $msg }}
+        @if(session('success'))
+            <div class="alert alert--success">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(session('error'))
+            <div class="alert alert--error">
+                {{ session('error') }}
             </div>
         @endif
 
-        <!-- ========== FORM TAMBAH JENIS HEWAN (disabled) ========== -->
-        {{--
-        Contoh form Laravel (dinonaktifkan). Jika ingin mengaktifkan, buat route 'jenis.store' di web.php dan controller menyimpan data.
+        <!-- ========== FORM TAMBAH JENIS HEWAN ========== -->
         <div class="add-form-section">
             <h3 class="form-title">Tambah Jenis Hewan Baru</h3>
-            <form class="form-row" method="POST" action="{{ route('jenis.store') }}">
+            <form class="form-row" method="POST" action="{{ route('admin.jenis-hewan.store') }}">
                 @csrf
                 <input type="text"
-                       name="nama_jenis"
+                       name="nama_jenis_hewan"
+                       value="{{ old('nama_jenis_hewan') }}"
                        placeholder="Masukkan nama jenis hewan baru"
                        required
                        maxlength="100"
-                       class="form-input" />
+                       class="form-input @error('nama_jenis_hewan') is-invalid @enderror" />
                 <button type="submit" class="btn-add">+ Tambah Jenis</button>
             </form>
+            @error('nama_jenis_hewan')
+                <span class="error-message" style="color: red; font-size: 14px; margin-top: 5px;">{{ $message }}</span>
+            @enderror
         </div>
-        --}}
         <!-- ========== TABEL DATA JENIS HEWAN ========== -->
         <div class="table-container">
             <table class="data-table">
@@ -61,6 +63,7 @@
                     <tr>
                         <th class="col-id">ID</th>
                         <th class="col-name">NAMA JENIS HEWAN</th>
+                        <th class="col-action">AKSI</th>
                     </tr>
                 </thead>
                 
@@ -74,10 +77,20 @@
 
                         <!-- Nama Jenis Hewan -->
                         <td class="col-name">{{ $jenis->nama_jenis_hewan }}</td>
+
+                        <!-- Aksi -->
+                        <td class="col-action">
+                            <a href="{{ route('admin.jenis-hewan.edit', $jenis->idjenis_hewan) }}" class="btn-edit">Edit</a>
+                            <form method="POST" action="{{ route('admin.jenis-hewan.destroy', $jenis->idjenis_hewan) }}" style="display: inline;" onsubmit="return confirm('Yakin hapus jenis hewan {{ $jenis->nama_jenis_hewan }}?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-delete">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
                     @empty
                     <tr class="empty-row">
-                        <td colspan="2">Belum ada data jenis hewan. Silakan tambah jenis hewan baru.</td>
+                        <td colspan="3">Belum ada data jenis hewan. Silakan tambah jenis hewan baru.</td>
                     </tr>
                     @endforelse
                 </tbody>
