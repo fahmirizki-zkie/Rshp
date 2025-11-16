@@ -72,11 +72,14 @@ Route::middleware(['isAdministrator'])->prefix ('admin')->name ('admin.')-> grou
     // Routes untuk Daftar Role Management (Admin bisa CRUD role)
     Route::get('/role/daftar', [RoleController::class, 'daftarRole'])->name('role.daftar');
     Route::post('/role/store', [RoleController::class, 'storeRole'])->name('role.store');
-    Route::delete('/role/{role}', [RoleController::class, 'destroyRole'])->name('role.destroy');
+    Route::delete('/role/delete/{role}', [RoleController::class, 'destroyRole'])->name('role.destroy');
 
+    // Routes untuk Assign Role ke User
+    Route::post('/role/assign', [RoleController::class, 'assignRole'])->name('role.assign');
+    
     // Routes untuk Update Status dan Hapus Role dari User
     Route::put('/role/{idrole_user}/status', [RoleController::class, 'updateRoleStatus'])->name('role.update-status');
-    Route::delete('/role/{idrole_user}', [RoleController::class, 'removeRole'])->name('role.remove');
+    Route::delete('/role/remove/{idrole_user}', [RoleController::class, 'removeRole'])->name('role.remove');
 
     // Routes untuk Ras Hewan - CRUD
     Route::get('/ras-hewan', [RasHewanController::class, 'index'])->name('ras-hewan.index');

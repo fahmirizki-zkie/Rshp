@@ -261,20 +261,23 @@ class PerawatController extends Controller
         $authCheck = $this->checkAuth($request);
         if ($authCheck) return $authCheck;
 
-        $rekamMedis = RekamMedisLaravel::getByIdJoined($id);
+        $detailRekamMedis = DetailRekamMedisLaravel::with([
+            'kodeTindakanTerapi.kategori',
+            'kodeTindakanTerapi.kategoriKlinis'
+        ])->findOrFail($id);
 
-        if (!$rekamMedis) {
-            return redirect()->route('perawat.rekam-medis')->with('error', 'Rekam medis tidak ditemukan');
+        if (!$detailRekamMedis) {
+            return redirect()->route('perawat.rekam-medis')->with('error', 'Detail rekam medis tidak ditemukan');
         }
 
         // Ambil semua kode tindakan terapi
-        $kodeTindakan = KodeTindakanTerapi::with(['kategori', 'kategoriKlinis'])
+        $kodeTindakanTerapi = KodeTindakanTerapi::with(['kategori', 'kategoriKlinis'])
             ->orderBy('kode')
             ->get();
 
         $user_nama = $request->session()->get('user_name', 'Pengguna');
 
-        return view('perawat.edit_detail_rekam_medis', compact('user_nama', 'rekamMedis', 'kodeTindakan'));
+        return view('perawat.edit_detail_rekam_medis', compact('user_nama', 'detailRekamMedis', 'kodeTindakanTerapi'));
     }
 
     /**

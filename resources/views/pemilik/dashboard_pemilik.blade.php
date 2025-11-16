@@ -1,4 +1,6 @@
 @include('layouts.pemilik.head')
+<link rel="stylesheet" href="{{ asset('css/pemilik/style_daftar_pet.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style_dashboard_pemilik.css') }}">
 @include('layouts.pemilik.header')
 
 <!-- ========== MAIN CONTENT SECTION ========== -->

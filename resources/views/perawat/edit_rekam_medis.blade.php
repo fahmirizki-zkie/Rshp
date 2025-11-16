@@ -1,6 +1,195 @@
 ﻿@include('layouts.perawat.head')
 
-<link rel="stylesheet" href="{{ asset('css/st.css') }}">
+<style>
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px 20px;
+    }
+
+    .container h1 {
+        color: #1f2937;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #f59e0b;
+    }
+
+    .info-card {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card h3 {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-card h3::before {
+        content: "✏️";
+        font-size: 20px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .info-item {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 12px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #374151;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-item strong {
+        color: #1f2937;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-container {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        color: #1f2937;
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: inherit;
+        color: #374151;
+        transition: all 0.3s ease;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+    }
+
+    .form-group textarea::placeholder {
+        color: #9ca3af;
+    }
+
+    .form-help {
+        display: block;
+        margin-top: 6px;
+        color: #6b7280;
+        font-size: 13px;
+        font-style: italic;
+    }
+
+    .error-message {
+        display: block;
+        color: #ef4444;
+        font-size: 13px;
+        margin-top: 6px;
+        font-weight: 500;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 2px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: white;
+        box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        box-shadow: 0 6px 8px rgba(245, 158, 11, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        color: white;
+        box-shadow: 0 4px 6px rgba(107, 114, 128, 0.3);
+    }
+
+    .btn-secondary:hover {
+        background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+        box-shadow: 0 6px 8px rgba(107, 114, 128, 0.4);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px 15px;
+        }
+
+        .container h1 {
+            font-size: 24px;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-container {
+            padding: 20px;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+</style>
 
 @include('layouts.perawat.header')
 @include('layouts.perawat.navbar')

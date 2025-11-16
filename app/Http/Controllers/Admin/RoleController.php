@@ -39,42 +39,46 @@ class RoleController extends Controller
         return view('admin.manajemen_role.manajemen_role', compact('users', 'allRoles'));
     }
 
-    // ========== CRUD OPERATIONS (DISABLED FOR NOW) ==========
-    // Fitur Assign/Update/Delete role dinonaktifkan sementara
-    // Hanya fitur View/Read yang aktif
+    // ========== CRUD OPERATIONS ==========
     
     /**
      * Assign a role to a user.
-     * DISABLED: Assign role operation
      */
-    // public function assignRole(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'iduser' => 'required|exists:user,iduser',
-    //         'idrole' => 'required|exists:role,idrole',
-    //         'status' => 'required|in:0,1',
-    //     ]);
+    public function assignRole(Request $request)
+    {
+        $validated = $request->validate([
+            'iduser' => 'required|exists:user,iduser',
+            'idrole' => 'required|exists:role,idrole',
+            'status' => 'required|in:0,1',
+        ], [
+            'iduser.required' => 'User wajib dipilih',
+            'iduser.exists' => 'User tidak ditemukan',
+            'idrole.required' => 'Role wajib dipilih',
+            'idrole.exists' => 'Role tidak ditemukan',
+            'status.required' => 'Status wajib dipilih',
+            'status.in' => 'Status harus Aktif atau Non-Aktif',
+        ]);
 
-    //     // Cek apakah user sudah punya role ini
-    //     $exists = UserRole::where('iduser', $validated['iduser'])
-    //                       ->where('idrole', $validated['idrole'])
-    //                       ->first();
+        // Cek apakah user sudah punya role ini
+        $exists = UserRole::where('iduser', $validated['iduser'])
+                          ->where('idrole', $validated['idrole'])
+                          ->first();
 
-    //     if ($exists) {
-    //         return redirect()->route('admin.role.index')
-    //             ->with('error', 'User sudah memiliki role ini');
-    //     }
+        if ($exists) {
+            return redirect()->route('admin.role.index')
+                ->with('error', 'User sudah memiliki role ini');
+        }
 
-    //     // Buat user role baru
-    //     UserRole::create([
-    //         'iduser' => $validated['iduser'],
-    //         'idrole' => $validated['idrole'],
-    //         'status' => $validated['status'],
-    //     ]);
+        // Buat user role baru
+        UserRole::create([
+            'iduser' => $validated['iduser'],
+            'idrole' => $validated['idrole'],
+            'status' => $validated['status'],
+        ]);
 
-    //     return redirect()->route('admin.role.index')
-    //         ->with('success', 'Role berhasil ditambahkan ke user');
-    // }
+        return redirect()->route('admin.role.index')
+            ->with('success', 'Role berhasil ditambahkan ke user');
+    }
 
     /**
      * Update the status of a user role (Aktif/Nonaktif).
@@ -103,6 +107,27 @@ class RoleController extends Controller
     public function removeRole($idrole_user)
     {
         $userRole = UserRole::findOrFail($idrole_user);
+        
+        // Cek apakah role ini masih digunakan di rekam medis
+        $rekamMedisCount = \DB::table('rekam_medis')
+            ->where('dokter_pemeriksa', $idrole_user)
+            ->count();
+            
+        if ($rekamMedisCount > 0) {
+            return redirect()->route('admin.role.index')
+                ->with('error', "Role tidak bisa dihapus karena masih ada {$rekamMedisCount} rekam medis yang menggunakan role ini sebagai dokter pemeriksa");
+        }
+        
+        // Cek apakah role ini masih digunakan di reservasi dokter
+        $reservasiCount = \DB::table('reservasi_dokter')
+            ->where('idrole_user', $idrole_user)
+            ->count();
+            
+        if ($reservasiCount > 0) {
+            return redirect()->route('admin.role.index')
+                ->with('error', "Role tidak bisa dihapus karena masih ada {$reservasiCount} reservasi yang menggunakan role ini");
+        }
+        
         $userRole->delete();
 
         return redirect()->route('admin.role.index')

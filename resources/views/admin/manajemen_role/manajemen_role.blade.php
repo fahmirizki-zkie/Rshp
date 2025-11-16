@@ -97,7 +97,33 @@
                             
                             <!-- Aksi -->
                             <td class="col-action">
-                                <span style="color: #6b7280;">Kelola di samping</span>
+                                <!-- Form Tambah Role ke User -->
+                                <form method="POST" action="{{ route('admin.role.assign') }}" style="display: flex; gap: 8px; align-items: center;">
+                                    @csrf
+                                    <input type="hidden" name="iduser" value="{{ $user->iduser }}">
+                                    
+                                    <select name="idrole" required style="padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                                        <option value="">-- Pilih Role --</option>
+                                        @foreach($allRoles as $role)
+                                            @php
+                                                // Cek apakah user sudah punya role ini
+                                                $hasRole = $user->roles->contains('idrole', $role->idrole);
+                                            @endphp
+                                            @if(!$hasRole)
+                                                <option value="{{ $role->idrole }}">{{ $role->nama_role }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    
+                                    <select name="status" required style="padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Non-Aktif</option>
+                                    </select>
+                                    
+                                    <button type="submit" class="btn-action" style="font-size: 13px; padding: 6px 12px; background: #10b981; white-space: nowrap;">
+                                        + Tambah
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @empty
