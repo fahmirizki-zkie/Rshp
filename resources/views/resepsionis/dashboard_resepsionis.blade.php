@@ -1,105 +1,81 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Resepsionis - RS Hewan UNAIR</title>
-    
-    <!-- CSS Styling External -->
-    <link rel="stylesheet" href="{{ asset('css/resepsionis/style_dashboard_resepsionis.css') }}">
-    
-    <!-- Font Google untuk typography yang konsisten -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- HEADER SECTION: Logo Universitas dan Rumah Sakit -->
-    <div class="nav-content">
-        <div class="logokiri">
-            <img src="{{ asset('img/unairr.png') }}" alt="Logo UNAIR">
+@include('layouts.resepsionis.head')
+
+<link rel="stylesheet" href="{{ asset('css/resepsionis/style_dashboard_resepsionis.css') }}">
+
+@include('layouts.resepsionis.header')
+@include('layouts.resepsionis.navbar')
+
+<div class="content-wrapper">
+    @if(session('success'))
+        <div class="alert alert-success" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" x-transition:enter="slideDown" x-transition:leave="slideUp">
+            {{ session('success') }}
         </div>
-        <div class="text">
-            <h2>Universitas Airlangga |</h2>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-error" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" x-transition:enter="slideDown" x-transition:leave="slideUp">
+            {{ session('error') }}
         </div>
-        <div class="text2">
-            <h2>Rumah Sakit Hewan Pendidikan</h2>
-        </div>
-        <div class="logokanan">
-            <img src="{{ asset('img/rshpp.png') }}" alt="Logo RSHP">
-        </div>
+    @endif
+<div class="main-container">
+    <div class="welcome-section">
+        <h1 class="welcome-title">Selamat Datang, {{ session('user_name') ?? 'Resepsionis' }}!</h1>
+        <p class="welcome-subtitle">
+            Anda berhasil login sebagai <span class="role-highlight">Resepsionis RSHP UNAIR</span>.
+        </p>
+        <p class="welcome-description">
+            Pilih menu di bawah ini untuk mengelola data dan layanan rumah sakit hewan.
+        </p>
     </div>
 
-    <!-- NAVIGATION BAR: Menu navigasi dan logout -->
-    <div class="navbar">
-        <a href="#" class="logo">RSHP<span> UNAIR.</span></a>
-        <div class="navbar-nav">
-            <a href="{{ route('resepsionis.dashboard') }}">Home</a>
-            <a href="{{ route('logout') }}">Logout</a>
-        </div>
-    </div>
-    
-    <!-- MAIN CONTENT: Dashboard content dan menu cards -->
-    <div class="main-container">
-        <!-- Welcome Section dengan informasi user -->
-        <div class="welcome-section">
-            <h1 class="welcome-title">Selamat Datang, {{ session('user_name') ?? 'Resepsionis' }}!</h1>
-            <p class="welcome-subtitle">
-                Anda berhasil login sebagai <span class="role-highlight">Resepsionis RSHP UNAIR</span>.
-            </p>
-            <p class="welcome-description">
-                Pilih menu di bawah ini untuk mengelola data dan layanan rumah sakit hewan.
-            </p>
+    <div class="menu-grid">
+        <div class="menu-card">
+            <div class="card-icon">
+                <i class="icon-user">👤</i>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Tambah Pemilik</h3>
+                <p class="card-description">
+                    Tambah data pemilik hewan baru ke sistem
+                </p>
+                <a href="{{ route('resepsionis.tambah-pemilik') }}" class="card-button">
+                    Tambah Pemilik
+                </a>
+            </div>
         </div>
 
-        <!-- MENU GRID: Cards untuk akses fitur resepsionis -->
-        <div class="menu-grid">
-            <!-- Card 1: Data Pemilik - Kelola informasi pemilik hewan -->
-            <div class="menu-card">
-                <div class="card-icon">
-                    <i class="icon-user">👤</i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Tambah Pemilik</h3>
-                    <p class="card-description">
-                        Tambah data pemilik hewan baru ke sistem
-                    </p>
-                    <a href="{{ route('resepsionis.tambah-pemilik') }}" class="card-button">
-                        Tambah Pemilik
-                    </a>
-                </div>
+        <div class="menu-card">
+            <div class="card-icon">
+                <i class="icon-pet">🐕</i>
             </div>
-
-            <!-- Card 2: Data Pet - Kelola informasi hewan terdaftar -->
-            <div class="menu-card">
-                <div class="card-icon">
-                    <i class="icon-pet">🐕</i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Tambah Pet</h3>
-                    <p class="card-description">
-                        Tambah data hewan peliharaan baru untuk layanan kesehatan
-                    </p>
-                    <a href="{{ route('resepsionis.tambah-pet') }}" class="card-button">
-                        Tambah Pet
-                    </a>
-                </div>
+            <div class="card-content">
+                <h3 class="card-title">Tambah Pet</h3>
+                <p class="card-description">
+                    Tambah data hewan peliharaan baru untuk layanan kesehatan
+                </p>
+                <a href="{{ route('resepsionis.tambah-pet') }}" class="card-button">
+                    Tambah Pet
+                </a>
             </div>
+        </div>
 
-            <!-- Card 3: Temu Dokter - DISABLED (akan diimplementasikan nanti) -->
-            <div class="menu-card" >
-                <div class="card-icon">
-                    <i class="icon-appointment">📅</i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Temu Dokter</h3>
-                    <p class="card-description">
-                        Temukan dokter yang sesuai untuk layanan kesehatan hewan
-                    </p>
-                    <a href="{{ route('resepsionis.temu-dokter') }}" class="card-button">
-                        Temu Dokter
-                    </a>
-                </div>
+        <div class="menu-card">
+            <div class="card-icon">
+                <i class="icon-appointment">📅</i>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Temu Dokter</h3>
+                <p class="card-description">
+                    Temukan dokter yang sesuai untuk layanan kesehatan hewan
+                </p>
+                <a href="{{ route('resepsionis.temu-dokter') }}" class="card-button">
+                    Temu Dokter
+                </a>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+</div>
+
+@include('layouts.resepsionis.footer')
+@include('layouts.resepsionis.scripts')

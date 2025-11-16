@@ -1,54 +1,52 @@
-﻿<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Dokter - RSHP UNAIR</title>
-    <link rel="stylesheet" href="{{ asset('css/style_dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dokter/style_dashboard_dokter.css') }}">
-</head>
-<body>
-    <div class="nav-content">
-        <div class="logokiri">
-            <img src="{{ asset('img/unairr.png') }}" alt="Logo UNAIR">
-        </div>
-        <div class="text">
-            <h2>Universitas Airlangga |</h2>
-        </div>
-        <div class="text2">
-            <h2>Rumah Sakit Hewan Pendidikan</h2>
-        </div>
-        <div class="logokanan">
-            <img src="{{ asset('img/rshpp.png') }}" alt="Logo RSHP">
-        </div>
-    </div>
+﻿@include('layouts.dokter.head')
 
-    <div class="navbar">
-        <a href="#" class="logo">RSHP<span> UNAIR.</span></a>
-        <div class="navbar-nav">
-            <a href="{{ route('dokter.dashboard') }}">Home</a>
-            <a href="{{ route('logout') }}">Logout</a>
-        </div>
-    </div>
+<link rel="stylesheet" href="{{ asset('css/dokter/style_dashboard_dokter.css') }}">
 
-    <div class="dashboard-container">
-        <h1 class="dashboard-welcome">
-            Selamat Datang, Dr. {{ session('user_name', 'Dokter') }}!
-        </h1>
-        <p class="dashboard-user-info">
-            Anda berhasil login sebagai 
-            <span class="role-highlight">Dokter RSHP UNAIR</span>.
-        </p>
-        <div class="dashboard-info-badge">
-            <span class="info-text">Akses Rekam Medis di menu bawah.</span>
+@include('layouts.dokter.header')
+@include('layouts.dokter.navbar')
+
+<div class="content-wrapper">
+    @if(session('success'))
+        <div class="alert alert-success" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" style="display: none;" x-transition>
+            {{ session('success') }}
         </div>
-        <div class="doctor-menu-container">
-            <a href="{{ route('dokter.rekam-medis') }}" class="doctor-menu-card">
-                <div class="card-icon"></div>
-                <h3 class="card-title">Rekam Medis</h3>
-                <p class="card-description">Lihat rekam medis pasien</p>
-            </a>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-error" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" style="display: none;" x-transition>
+            {{ session('error') }}
         </div>
+    @endif
+
+    @if($errors->any())
+        <div class="alert alert-error" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" style="display: none;" x-transition>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+<div class="dashboard-container">
+    <h1 class="dashboard-welcome">
+        Selamat Datang, Dr. {{ session('user_name', 'Dokter') }}!
+    </h1>
+    <p class="dashboard-user-info">
+        Anda berhasil login sebagai 
+        <span class="role-highlight">Dokter RSHP UNAIR</span>.
+    </p>
+    <div class="dashboard-info-badge">
+        <span class="info-text">Akses Rekam Medis di menu bawah.</span>
     </div>
-</body>
-</html>
+    <div class="doctor-menu-container">
+        <a href="{{ route('dokter.rekam-medis') }}" class="doctor-menu-card">
+            <div class="card-icon"></div>
+            <h3 class="card-title">Rekam Medis</h3>
+            <p class="card-description">Lihat rekam medis pasien</p>
+        </a>
+    </div>
+</div>
+</div>
+
+@include('layouts.dokter.footer')
+@include('layouts.dokter.scripts')

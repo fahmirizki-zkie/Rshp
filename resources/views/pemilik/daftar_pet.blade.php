@@ -1,46 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Pet - RS Hewan UNAIR</title>
-    
-    <!-- ========== CSS STYLESHEETS ========== -->
-    <!-- CSS khusus untuk halaman daftar pet -->
-    <link rel="stylesheet" href="{{ asset('css/pemilik/style_daftar_pet.css') }}">
-    
-    <!-- Google Fonts untuk typography yang lebih baik -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome untuk icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    <!-- ========== HEADER NAVIGATION SECTION ========== -->
-    <header class="header">
-        <div class="container">
-            <!-- Logo dan brand name -->
-            <div class="logo">
-                <img src="{{ asset('img/rshpp.png') }}" alt="RS Hewan UNAIR">
-                <span>RS Hewan UNAIR</span>
-            </div>
-            
-            <!-- Navigation menu untuk pemilik -->
-            <nav class="nav-menu">
-                <!-- Menu Dashboard -->
-                <a href="{{ route('pemilik.dashboard') }}"><i class="fas fa-home"></i> Dashboard</a>
-                
-                <!-- Menu Daftar Pet (active) -->
-                <a href="{{ route('pemilik.daftar-pet') }}" class="active"><i class="fas fa-paw"></i> Daftar Pet</a>
-                
-                <!-- Menu Reservasi -->
-                <a href="#"><i class="fas fa-calendar"></i> Reservasi</a>
-                
-                <!-- Menu Rekam Medis -->
-                <a href="#"><i class="fas fa-file-medical"></i> Rekam Medis</a>
-            </nav>
-        </div>
-    </header>
+@include('layouts.pemilik.head')
+
+<link rel="stylesheet" href="{{ asset('css/pemilik/style_daftar_pet.css') }}">
+
+@include('layouts.pemilik.header')
 
     <!-- ========== MAIN CONTENT SECTION ========== -->
     <main class="main-content">
@@ -111,5 +73,6 @@
             @endif
         </div>
     </main>
-</body>
-</html>
+
+@include('layouts.pemilik.footer')
+@include('layouts.pemilik.scripts')

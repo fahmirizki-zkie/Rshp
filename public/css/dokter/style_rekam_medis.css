@@ -104,7 +104,7 @@ body {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
-  margin-top: 85px;
+  margin-top: 55px;
   box-shadow: var(--shadow);
   position: sticky;
   top: 85px;
@@ -263,8 +263,9 @@ body {
   border-radius: 15px;
   padding: 25px;
   margin-bottom: 25px;
-  box-shadow: 0 8px 32px rgba(38, 82, 149, 0.1);
+  box-shadow: 0 8px 32px #eff1f61a;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .info-card h3,
@@ -460,8 +461,8 @@ table {
 }
 
 table thead {
-  background: linear-gradient(90deg, #265295 0%, #4eb1cf 100%);
-  color: white;
+  background: linear-gradient(90deg, #265295 , #4eb1cf);
+  color: rgb(255, 255, 255);
 }
 
 table th {
@@ -471,6 +472,7 @@ table th {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color : white;
 }
 
 table td {
@@ -479,9 +481,6 @@ table td {
   vertical-align: middle;
 }
 
-table tr:hover {
-  background: #f8f9fa;
-}
 
 table tr:last-child td {
   border-bottom: none;
