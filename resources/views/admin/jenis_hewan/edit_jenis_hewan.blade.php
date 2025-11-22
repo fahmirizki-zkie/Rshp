@@ -1,12 +1,8 @@
-﻿<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Jenis Hewan - Administrator</title>
-    <link rel="stylesheet" href="{{ asset('css/style_jenis_hewan.css') }}" />
-</head>
-<body>
+﻿@include('layouts.admin.head')
+@include('layouts.admin.header')
+@include('layouts.admin.navbar')
+
+<div class="content-wrapper">
     <div class="container">
         <div class="main-content">
             <div class="page-header">
@@ -46,5 +42,7 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+@include('layouts.admin.footer')
+@include('layouts.admin.scripts')

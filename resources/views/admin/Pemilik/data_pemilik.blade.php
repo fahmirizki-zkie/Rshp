@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pemilik - Admin RSHP</title>
-    <link rel="stylesheet" href="{{ asset('css/style_data_pemilik_new.css') }}">
-</head>
-<body>
+@include('layouts.admin.head')
+@include('layouts.admin.header')
+@include('layouts.admin.navbar')
+
+<div class="content-wrapper">
     <!-- ========== MAIN CONTENT ========== -->
     <div class="container">
         <!-- ========== MAIN CONTENT WRAPPER ========== -->
@@ -79,5 +75,7 @@
         <!-- END MAIN CONTENT WRAPPER -->
         </div>
     </div>
-</body>
-</html>
+</div>
+
+@include('layouts.admin.footer')
+@include('layouts.admin.scripts')

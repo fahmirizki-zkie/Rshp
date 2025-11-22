@@ -72,6 +72,20 @@
 			<p class="card-description">Informasi pemilik hewan</p>
 		</a>
 		
+		<!-- Dokter Data -->
+		<a class="feature-card" href="{{ route('admin.dokter.index') }}">
+			<div class="card-icon">👨‍⚕️</div>
+			<h3 class="card-title">Data Dokter</h3>
+			<p class="card-description">Kelola data dokter hewan</p>
+		</a>
+		
+		<!-- Perawat Data -->
+		<a class="feature-card" href="{{ route('admin.perawat.index') }}">
+			<div class="card-icon">👩‍⚕️</div>
+			<h3 class="card-title">Data Perawat</h3>
+			<p class="card-description">Kelola data perawat hewan</p>
+		</a>
+		
 		<!-- Pet Data -->
 		<a class="feature-card" href="{{ route('admin.pet.index') }}">
 			<div class="card-icon">🐕</div>

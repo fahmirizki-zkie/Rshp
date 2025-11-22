@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@yield('title', 'Admin RSHP')</title>
 	<link rel="stylesheet" href="{{ asset('css/style_dashboard.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style_data_pemilik_new.css') }}">
 	<style>
 		/* Alert Styles */
 		.alert {

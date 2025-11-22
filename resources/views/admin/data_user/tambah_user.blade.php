@@ -1,12 +1,8 @@
-﻿<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah User - Administrator</title>
-    <link rel="stylesheet" href="{{ asset('css/admin/style_data_user.css') }}">
-</head>
-<body>
+﻿@include('layouts.admin.head')
+@include('layouts.admin.header')
+@include('layouts.admin.navbar')
+
+<div class="content-wrapper">
     <div class="container">
         <h2>Tambah User Baru</h2>
         <p class="page-info">Form untuk menambahkan user baru ke sistem</p>
@@ -52,5 +48,7 @@
             </form>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+@include('layouts.admin.footer')
+@include('layouts.admin.scripts')

@@ -56,6 +56,22 @@ Route::middleware(['isAdministrator'])->prefix ('admin')->name ('admin.')-> grou
     Route::get('/pemilik/{iduser}/edit', [AdminPemilikController::class, 'edit'])->name('pemilik.edit');
     Route::delete('/pemilik/{idpemilik}', [AdminPemilikController::class, 'destroy'])->name('pemilik.destroy');
 
+    // Routes untuk Dokter Management
+    Route::get('/dokter', [\App\Http\Controllers\Admin\DokterController::class, 'index'])->name('dokter.index');
+    Route::get('/dokter/create', [\App\Http\Controllers\Admin\DokterController::class, 'create'])->name('dokter.create');
+    Route::post('/dokter', [\App\Http\Controllers\Admin\DokterController::class, 'store'])->name('dokter.store');
+    Route::get('/dokter/{id}/edit', [\App\Http\Controllers\Admin\DokterController::class, 'edit'])->name('dokter.edit');
+    Route::put('/dokter/{id}', [\App\Http\Controllers\Admin\DokterController::class, 'update'])->name('dokter.update');
+    Route::delete('/dokter/{id}', [\App\Http\Controllers\Admin\DokterController::class, 'destroy'])->name('dokter.destroy');
+
+    // Routes untuk Perawat - CRUD
+    Route::get('/perawat', [\App\Http\Controllers\Admin\PerawatController::class, 'index'])->name('perawat.index');
+    Route::get('/perawat/create', [\App\Http\Controllers\Admin\PerawatController::class, 'create'])->name('perawat.create');
+    Route::post('/perawat', [\App\Http\Controllers\Admin\PerawatController::class, 'store'])->name('perawat.store');
+    Route::get('/perawat/{id}/edit', [\App\Http\Controllers\Admin\PerawatController::class, 'edit'])->name('perawat.edit');
+    Route::put('/perawat/{id}', [\App\Http\Controllers\Admin\PerawatController::class, 'update'])->name('perawat.update');
+    Route::delete('/perawat/{id}', [\App\Http\Controllers\Admin\PerawatController::class, 'destroy'])->name('perawat.destroy');
+
     // Routes untuk User Management (VIEW ONLY - CRUD DISABLED)
     // User Management Routes
     Route::get('/user', [UserController::class, 'index'])->name('user.index');

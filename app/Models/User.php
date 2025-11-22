@@ -78,6 +78,21 @@ class User extends Authenticatable
         return $this->hasOne(Pemilik::class, 'iduser', 'iduser');
     }
 
+    public function dokter()
+    {
+        return $this->hasOne(Dokter::class, 'iduser', 'iduser');
+    }
+
+    public function perawat()
+    {
+        return $this->hasOne(Perawat::class, 'iduser', 'iduser');
+    }
+
+    public function userRole()
+    {
+        return $this->hasMany(UserRole::class, 'iduser', 'iduser');
+    }
+
     //Relationship: A user can have many roles
     public function roles()
     {

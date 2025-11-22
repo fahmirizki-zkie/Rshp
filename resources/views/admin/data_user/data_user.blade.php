@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data User - Administrator</title>
-    
-    <!-- CSS khusus untuk data user -->
-    <link rel="stylesheet" href="{{ asset('css/admin/style_data_user.css') }}">
-</head>
-<body>
+@include('layouts.admin.head')
+@include('layouts.admin.header')
+@include('layouts.admin.navbar')
+
+<div class="content-wrapper">
     <!-- ========== MAIN CONTAINER ========== -->
     <div class="container">
         <!-- ========== HEADER SECTION ========== -->
@@ -77,5 +71,7 @@
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</div>
+
+@include('layouts.admin.footer')
+@include('layouts.admin.scripts')

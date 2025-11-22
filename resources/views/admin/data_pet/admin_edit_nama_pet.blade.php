@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Nama Pet - Administrator</title>
-    
-    <!-- CSS Files untuk styling -->
-    <link rel="stylesheet" href="{{ asset('css/admin/style_data_pemilik.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style_data_master_new.css') }}">
-</head>
-<body>
+@include('layouts.admin.head')
+@include('layouts.admin.header')
+@include('layouts.admin.navbar')
+
+<div class="content-wrapper">
     <!-- ========== MAIN CONTAINER ========== -->
     <div class="container-small">
         <!-- Navigation link kembali -->
@@ -49,5 +42,7 @@
             </form>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+@include('layouts.admin.footer')
+@include('layouts.admin.scripts')

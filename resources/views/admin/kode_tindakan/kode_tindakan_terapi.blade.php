@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Data Kode Tindakan/Terapi - Administrator</title>
-	<link rel="stylesheet" href="{{ asset('css/admin/style_kode_tindakan_terapi_new.css') }}" />
-</head>
-<body>
+@include('layouts.admin.head')
+@include('layouts.admin.header')
+@include('layouts.admin.navbar')
+
+<div class="content-wrapper">
 	<!-- ========== MAIN CONTENT ========== -->
-<body>
 	<div class="container">
 		<!-- ========== MAIN CONTENT WRAPPER ========== -->
 		<div class="main-content">
@@ -142,5 +137,7 @@
 			<!-- END MAIN CONTENT WRAPPER -->
 		</div>
 	</div>
-</body>
-</html>
+</div>
+
+@include('layouts.admin.footer')
+@include('layouts.admin.scripts')
